@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -91,6 +91,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1606,7 +1618,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Grass_62: -2084532197
       Grass_33: 196898114
       Grass_5: 34595870
       Grass_22: 1560267865
@@ -1642,13 +1653,13 @@ TextureImporter:
       Grass_64: -747505735
       Grass_27: -305935994
       Grass_19: -880198751
-      Grass_23: 978924205
-      Grass_8: -562754609
+      Grass_9: 1015901277
+      Grass_58: -612872400
       Grass_24: -566816251
       Grass_52: -244637066
-      Grass_9: 1015901277
+      Grass_23: 978924205
       Grass_70: 838719420
-      Grass_58: -612872400
+      Grass_8: -562754609
       Grass_35: -710309486
       Grass_38: -943730648
       Grass_21: -1545406519
@@ -1671,6 +1682,7 @@ TextureImporter:
       Grass_65: 274630398
       Grass_56: -995205351
       Grass_44: 1740316398
+      Grass_62: -2084532197
       Grass_55: 1326695452
       Grass_37: 45715044
       Grass_47: -313216554
