@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 690359370262994959}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,9 +258,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullPrefab: {fileID: 8174447319876222284, guid: c1528d0681aab754fbfccc1707695eaf, type: 3}
   firepoint: {fileID: 690359370878469658}
+  bullSpread: 0
   bullforce: 10
   bullRange: 1000
   numBull: 1
+  bullDmg: 0
+  isMultishoot: 0
 --- !u!1 &690359372209576784
 GameObject:
   m_ObjectHideFlags: 0

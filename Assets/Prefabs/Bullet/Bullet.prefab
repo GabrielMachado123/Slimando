@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 2796824750207163579}
   - component: {fileID: 4679413984560500167}
   m_Layer: 7
-  m_Name: Bullet
-  m_TagString: Untagged
+  m_Name: Hills_0
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
