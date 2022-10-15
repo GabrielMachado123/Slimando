@@ -22,6 +22,11 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    void P_IncreaseMaxHP(float moreHP)
+    {
+        maxHealth += moreHP;
+    }
+
     void P_TakeDamage(float DMG)
     {
         currentHealth -= DMG;
