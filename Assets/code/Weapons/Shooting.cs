@@ -42,6 +42,8 @@ public class Shooting : MonoBehaviour
         bull.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
         Rigidbody2D rbBull = bull.GetComponent<Rigidbody2D>();
         rbBull.AddForce((bull.transform.up * bullforce), ForceMode2D.Impulse);
+
+        Destroy(bull, 8f);
     }
 
     void Multishoot()
@@ -61,12 +63,14 @@ public class Shooting : MonoBehaviour
                 Vector3 spread_v = new Vector3(0,0,uni_rot);
                 //associating an instatiating bullet to a varible for later use
                 GameObject bullet = Instantiate(bullPrefab,firepoint.position,Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v+normalizer));
+                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
                 //adding a force or a velocity + direction for the bulets to have movement;
                 bull_rb.AddForce((bullet.transform.up * bullet_force), ForceMode2D.Impulse);
                 //increment rotation of bullet
                 uni_rot += angle_adder;
+                Destroy(bullet, 8f);
             }//end for loop for each bullet
 
         }
@@ -80,12 +84,13 @@ public class Shooting : MonoBehaviour
                 Vector3 spread_v = new Vector3(0,0,uni_rot);
                 //associating an instatiating bullet to a varible for later use
                 GameObject bullet = Instantiate(bullPrefab,firepoint.position,Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v+normalizer));
+                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
                 //adding a force or a velocity + direction for the bulets to have movement;
                 bull_rb.AddForce((bullet.transform.up * bullet_force), ForceMode2D.Impulse);
-
                 //changes the bullets spread to its original value
+                Destroy(bullet, 8f);
                 uni_rot = bullSpread;
             }//end for loop for each bullet
         }

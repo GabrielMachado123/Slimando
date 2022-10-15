@@ -11,31 +11,65 @@ public class PlayerMovement : MonoBehaviour
     //animator
     [SerializeField]
     private Animator animator;
-
-
     //input
     Vector2 movement;
+
+    //dash variables
+    public bool isdash = false;
+    public float cooldown, dashforce, dashlength;
+
+    private float dashtimer;
 
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.SqrMagnitude());
+        SetAnime();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            dashtimer = dashlength;
+            Dashing();
+
+        }
+
 
     }
-
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
+        if (!isdash)
+            rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
+        else
+        {
+            rb.AddForce(rb.position + (movement * dashforce) * Time.deltaTime);
+        }
     }
 
-    Animator GetAnimator()
+    void Dashing()
     {
-        return animator;
+        if(dashtimer > 0)
+        {
+            dashtimer -= Time.deltaTime;
+            isdash = true;
+        }
+        else
+        {
+            dashtimer = 0;
+            rb.velocity = Vector2.zero;
+            isdash = false;
+        }
+
+
     }
+
+    void SetAnime()
+    {
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.SqrMagnitude());
+    }
+
 }
