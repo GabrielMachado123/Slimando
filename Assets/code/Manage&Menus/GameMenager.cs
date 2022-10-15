@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameMenager : MonoBehaviour
 {
     public GameObject pauseMenu, settingsMenu, startMenu;
-    public bool isPausedOpen, isSettingsOpen, isGameStarted;
+    private bool isPausedOpen, isSettingsOpen, isGameStarted;
 
     public static GameMenager instance;
+
 
     public void StartGame()
     {
@@ -21,7 +23,6 @@ public class GameMenager : MonoBehaviour
 
     public void QuitGame()
     {
-        System.Diagnostics.Process.Start(Application.dataPath.Replace("_Data", ".exe"));
         Application.Quit();
     }
 
