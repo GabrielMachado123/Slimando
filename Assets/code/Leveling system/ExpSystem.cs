@@ -9,6 +9,8 @@ public class ExpSystem : MonoBehaviour
     public TextMeshProUGUI currentPlayerLevelText, expJointText;
     public int currentExp, goalExp, playerLevel;
     public Slider expSlider;
+    public GameObject levelUpPanel;
+
 
     public static ExpSystem instance;
 
@@ -38,8 +40,9 @@ public class ExpSystem : MonoBehaviour
         {
             currentExp -= goalExp;
             playerLevel++;
-            goalExp += goalExp / 20;
 
+            goalExp += goalExp / 20;
+            ShowLevelUpPanel();
             currentPlayerLevelText.text = "Level: " + playerLevel.ToString();
 
             expSlider.maxValue = goalExp;
@@ -47,5 +50,17 @@ public class ExpSystem : MonoBehaviour
 
         expSlider.value = currentExp;
         expJointText.text = currentExp.ToString() + " / " + expSlider.maxValue;
+    }
+
+    public void ShowLevelUpPanel()
+    {
+        Time.timeScale = 0;
+        levelUpPanel.SetActive(true);
+    }
+
+    public void CloseLevelUpPanel()
+    {
+        Time.timeScale = 1;
+        levelUpPanel.SetActive(false);
     }
 }
