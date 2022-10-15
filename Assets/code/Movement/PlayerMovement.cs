@@ -15,10 +15,17 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
 
     //dash variables
-    public bool isdash = false;
-    public float cooldown, dashforce, dashlength;
+    public float beginDashTimer;
+    public float dashSpeed;
+    public float dashTimer;
+    private int direction;
 
-    private float dashtimer;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        dashTimer = beginDashTimer;
+
+    }
 
     void Update()
     {
@@ -26,43 +33,66 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         SetAnime();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            dashtimer = dashlength;
-            Dashing();
-
-        }
-
-
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isdash)
-            rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
+
+        rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
+
+        /*if (direction == 0)
+        {
+            if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.A)))
+            {
+                direction = 1;
+                Debug.Log("Dashed");
+            }
+            else if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.D)))
+            {
+                direction = 2;
+                Debug.Log("Dashed");
+            }
+            else if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.W)))
+            {
+                direction = 3;
+                Debug.Log("Dashed");
+            }
+            else if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.S)))
+            {
+                direction = 4;
+                Debug.Log("Dashed");
+            }
+        }
         else
         {
-            rb.AddForce(rb.position + (movement * dashforce) * Time.deltaTime);
-        }
-    }
+            if (dashTimer <= 0)
+            {
+                direction = 0;
+                dashTimer = beginDashTimer;
+                rb.velocity = Vector2.zero;
+            }
+            else
+            {
+                dashTimer -= Time.deltaTime;
 
-    void Dashing()
-    {
-        if(dashtimer > 0)
-        {
-            dashtimer -= Time.deltaTime;
-            isdash = true;
-        }
-        else
-        {
-            dashtimer = 0;
-            rb.velocity = Vector2.zero;
-            isdash = false;
-        }
-
-
+                if (direction == 1)
+                {
+                    rb.MovePosition(rb.position + Vector2.left) * dashSpeed;
+                }
+                else if (direction == 2)
+                {
+                    rb.MovePosition(rb.position + Vector2.right) * dashSpeed;
+                }
+                else if (direction == 3)
+                {
+                    rb.MovePosition(rb.position + Vector2.up) * dashSpeed;
+                }
+                else if (direction == 4)
+                { 
+                    rb.MovePosition(rb.position + Vector2.down) * dashSpeed;
+                }
+            }
+        }*/
     }
 
     void SetAnime()
