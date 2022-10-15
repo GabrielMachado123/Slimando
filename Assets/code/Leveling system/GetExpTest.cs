@@ -7,7 +7,7 @@ public class GetExpTest : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && (ExpSystem.instance.isLevelUpPanelOpen == false))
         {
             ExpSystem.instance.GainExp(25);
         }

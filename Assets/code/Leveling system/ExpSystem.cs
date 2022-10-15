@@ -10,6 +10,7 @@ public class ExpSystem : MonoBehaviour
     public int currentExp, goalExp, playerLevel;
     public Slider expSlider;
     public GameObject levelUpPanel;
+    public bool isLevelUpPanelOpen;
 
 
     public static ExpSystem instance;
@@ -56,11 +57,13 @@ public class ExpSystem : MonoBehaviour
     {
         Time.timeScale = 0;
         levelUpPanel.SetActive(true);
+        isLevelUpPanelOpen = true;
     }
 
     public void CloseLevelUpPanel()
     {
         Time.timeScale = 1;
         levelUpPanel.SetActive(false);
+        isLevelUpPanelOpen = false;
     }
 }
