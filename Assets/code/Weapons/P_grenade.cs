@@ -41,11 +41,18 @@ public class P_grenade : MonoBehaviour
 
         foreach (Collider2D col in colliders)
         {
-            //if(col)
+            CheckEntity(col);
         }
 
         Destroy(this.gameObject);
 
     }
+
+    void CheckEntity(Collider2D col)
+    {
+
+    }
+
+
 
 }
