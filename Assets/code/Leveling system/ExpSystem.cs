@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class ExpSystem : MonoBehaviour
 {
     public TextMeshProUGUI currentPlayerLevelText, expJointText;
-    public int currentExp, goalExp, playerLevel;
+    private int currentExp, goalExp, playerLevel;
     public Slider expSlider;
     public GameObject levelUpPanel;
     public bool isLevelUpPanelOpen;
-
 
     public static ExpSystem instance;
 
@@ -25,6 +24,8 @@ public class ExpSystem : MonoBehaviour
 
     private void Start()
     {
+        goalExp = 100;
+        playerLevel = 1;
         currentPlayerLevelText.text = "Level: " + playerLevel.ToString();
         expJointText.text = currentExp.ToString() + " / " + goalExp.ToString();
 
@@ -35,7 +36,10 @@ public class ExpSystem : MonoBehaviour
 
     public void GainExp(int exp)
     {
-        currentExp += exp;
+        if (isLevelUpPanelOpen == false)
+        {
+            currentExp += exp;
+        }
 
         if (currentExp >= goalExp)
         {
@@ -56,14 +60,18 @@ public class ExpSystem : MonoBehaviour
     public void ShowLevelUpPanel()
     {
         Time.timeScale = 0;
-        levelUpPanel.SetActive(true);
         isLevelUpPanelOpen = true;
+
+        if (isLevelUpPanelOpen == true)
+            levelUpPanel.SetActive(true);
     }
 
     public void CloseLevelUpPanel()
     {
         Time.timeScale = 1;
-        levelUpPanel.SetActive(false);
         isLevelUpPanelOpen = false;
+
+        if (isLevelUpPanelOpen == false)
+            levelUpPanel.SetActive(false);
     }
 }
