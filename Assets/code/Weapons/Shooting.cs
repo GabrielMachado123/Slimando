@@ -66,6 +66,7 @@ public class Shooting : MonoBehaviour
                 bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
+                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //adding a force or a velocity + direction for the bulets to have movement;
                 bull_rb.AddForce((bullet.transform.up * bullet_force), ForceMode2D.Impulse);
                 //increment rotation of bullet
@@ -87,6 +88,7 @@ public class Shooting : MonoBehaviour
                 bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
+                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //adding a force or a velocity + direction for the bulets to have movement;
                 bull_rb.AddForce((bullet.transform.up * bullet_force), ForceMode2D.Impulse);
                 //changes the bullets spread to its original value

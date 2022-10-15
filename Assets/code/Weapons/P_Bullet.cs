@@ -11,6 +11,11 @@ public class P_Bullet : MonoBehaviour
         bulletDMG = dmg;
     }
 
+    public float GetBulletDmg()
+    {
+        return bulletDMG;
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         Destroy(this.gameObject);
