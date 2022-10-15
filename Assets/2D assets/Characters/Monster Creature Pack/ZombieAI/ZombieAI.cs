@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieAI : MonoBehaviour
 {
     public EnemyInfo enemyInfo;
-    public Bucket bucket;
+    private Bucket bucket;
 
     int hashAttl;
     int hashAttr;
@@ -15,8 +15,10 @@ public class ZombieAI : MonoBehaviour
     int hashDieL;
 
     private Transform Target;
+    private PlayerHealth playerHealth;
     private Rigidbody2D rb;
     private Animator anim;
+    private BoxCollider2D collider;
 
     private bool isattacking = false;
     private bool isCollinding = false;
@@ -25,14 +27,15 @@ public class ZombieAI : MonoBehaviour
     private float damage;
     private float health;
 
-    private bool disapear = false;
+   
+    private bool isdying = false;
 
     private Vector3 direction;
     private Vector3 BP;
 
     void Start()
     {
-        bucket.CreateZombie(gameObject);
+        bucket = GameObject.FindGameObjectWithTag("GameSpawner").GetComponent<Bucket>();
 
         hashAttDown = Animator.StringToHash("AD");
         hashAttUp = Animator.StringToHash("AU");
@@ -43,14 +46,18 @@ public class ZombieAI : MonoBehaviour
         hashDieR = Animator.StringToHash("DR");
 
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider2D>();
 
         speed = enemyInfo.speed;
         damage = enemyInfo.damage;
         health = enemyInfo.health;
 
         BP = enemyInfo.GetBucketPosition();
+        
     }
 
     
@@ -58,22 +65,19 @@ public class ZombieAI : MonoBehaviour
     {
             if (health < 0)
             {
-            if (direction.x > 0)
+            if (direction.x > 0 && isdying == false)
             {
+                isdying = true;
                 anim.SetTrigger(hashDieR);
             }
-            else
+            else if(isdying == false)
             {
+                isdying = true;
                 anim.SetTrigger(hashDieL);
             }
 
-            if(disapear)
-            {
-                InBucket();
-                transform.position = BP;
-                bucket.PutInBucketZombie(gameObject);
-            }
-
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            collider.enabled = false;
             }
            else if (!isCollinding)
             {
@@ -138,7 +142,14 @@ public class ZombieAI : MonoBehaviour
 
     private void die()
     {
-        disapear = true;
+        
+        InBucket();
+        collider.enabled = true;
+        transform.position = BP;
+        bucket.PutInBucketZombie(gameObject);
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        isdying = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -150,9 +161,10 @@ public class ZombieAI : MonoBehaviour
         
         if(collision.gameObject.tag == "PlayerBullet")
         {
+            
             float damage;
             damage = collision.gameObject.GetComponent<P_Bullet>().GetBulletDmg();
-
+         
             health -= damage;
         }
     }
@@ -169,4 +181,11 @@ public class ZombieAI : MonoBehaviour
     {
         health -= damage;
     }
+
+    public void DealDamage()
+    {
+        playerHealth.currentHealth -= damage;
+    }
+
+  
 }
