@@ -33,4 +33,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
     }
+
+    Animator GetAnimator()
+    {
+        return animator;
+    }
 }

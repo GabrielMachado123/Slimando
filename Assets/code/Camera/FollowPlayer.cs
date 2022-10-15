@@ -18,7 +18,10 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 targetposition = Target.position + offset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetposition, ref velocity, smoothTime);
+        if (Target != null)
+        {
+            Vector3 targetposition = Target.position + offset;
+            transform.position = Vector3.SmoothDamp(transform.position, targetposition, ref velocity, smoothTime);
+        }
     }
 }
