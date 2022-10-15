@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public float PlayerSpeed = 50f;
 
+    //animator
+    [SerializeField]
+    private Animator animator;
+
 
     //input
     Vector2 movement;
@@ -16,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.SqrMagnitude());
+
     }
 
 
