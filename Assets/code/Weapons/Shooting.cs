@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Shooting : MonoBehaviour
 {
@@ -27,17 +28,19 @@ public class Shooting : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //lazy stuff idc
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextfire)//left click
+        if (EventSystem.current.IsPointerOverGameObject() == false)
         {
-            if(ExpSystem.instance.isLevelUpPanelOpen ==false)
-            shv.StartShake(0.1f, 0.4f, 0.3f);
+            if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextfire)//left click
+            {
+                if (ExpSystem.instance.isLevelUpPanelOpen == false)
+                    shv.StartShake(0.1f, 0.4f, 0.3f);
 
-            nextfire = Time.time + firerate;
-            if (!isMultishoot)
-                Shoot();
-            else
-                Multishoot();
+                nextfire = Time.time + firerate;
+                if (!isMultishoot)
+                    Shoot();
+                else
+                    Multishoot();
+            }
         }
 
     }

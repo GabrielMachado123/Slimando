@@ -16,7 +16,6 @@ public class P_grenade : MonoBehaviour
 
     private ShakeCameraControll shake;
 
-    // Update is called once per frame
     void FixedUpdate()
     {
 
