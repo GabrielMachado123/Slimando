@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class P_Bullet : MonoBehaviour
 {
-    private float bulletDMG; 
+    private float bulletDMG;
+
+    [SerializeField]
+    private GameObject trail;
 
     public void SetBulletDMG( float dmg)
     {

@@ -11,6 +11,7 @@ public class Shooting : MonoBehaviour
 
 
     public bool isMultishoot = false;
+    public float firerate = 1f, nextfire = 0f;
     private Vector2 mousePos;
 
     void Update()
@@ -18,8 +19,9 @@ public class Shooting : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //lazy stuff idc
-        if (Input.GetKeyDown(KeyCode.Mouse0))//left click
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextfire )//left click
         {
+            nextfire = Time.time + firerate;
             if (!isMultishoot)
                 Shoot();
             else
