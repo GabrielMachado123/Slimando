@@ -15,6 +15,13 @@ public class Shooting : MonoBehaviour
     public float firerate = 1f, nextfire = 0f;
     private Vector2 mousePos;
 
+    //audio
+    [SerializeField]
+    private AudioSource source;
+    [SerializeField]
+    private AudioClip clip;
+
+
     void Awake()
     {
         shv = Camera.main.GetComponent<ShakeCameraControll>();
@@ -29,6 +36,9 @@ public class Shooting : MonoBehaviour
         {
             if(ExpSystem.instance.isLevelUpPanelOpen ==false)
             shv.StartShake(0.1f, 0.4f, 0.3f);
+
+            //audio
+            source.PlayOneShot(clip);
 
             nextfire = Time.time + firerate;
             if (!isMultishoot)
