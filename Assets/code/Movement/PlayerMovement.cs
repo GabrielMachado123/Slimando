@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public Rigidbody2D rb;
     public float PlayerSpeed = 50f;
 
@@ -15,17 +14,14 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
 
     //dash variables
-    public float beginDashTimer;
-    public float dashSpeed;
-    public float dashTimer;
-    private int direction;
+    public bool isdash = false;
+    public float cooldown=3f, dashforce, dashlength=0.5f;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        dashTimer = beginDashTimer;
+    [SerializeField]
+    private float dashtimer,Cooldownholder=0f;
 
-    }
+    [SerializeField]
+    private AnimationCurve AC;
 
     void Update()
     {
@@ -33,66 +29,43 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         SetAnime();
+
+        if (Input.GetKeyDown(KeyCode.Space) )
+        {
+            Dashing();
+        }
+            Cooldownholder -= Time.deltaTime;
+
     }
 
+    // Update is called once per frame
     void FixedUpdate()
     {
-
-        rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
-
-        /*if (direction == 0)
-        {
-            if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.A)))
-            {
-                direction = 1;
-                Debug.Log("Dashed");
-            }
-            else if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.D)))
-            {
-                direction = 2;
-                Debug.Log("Dashed");
-            }
-            else if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.W)))
-            {
-                direction = 3;
-                Debug.Log("Dashed");
-            }
-            else if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.S)))
-            {
-                direction = 4;
-                Debug.Log("Dashed");
-            }
-        }
+        if (!isdash)
+            rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
         else
         {
-            if (dashTimer <= 0)
-            {
-                direction = 0;
-                dashTimer = beginDashTimer;
-                rb.velocity = Vector2.zero;
-            }
-            else
-            {
-                dashTimer -= Time.deltaTime;
+            dashtimer += Time.fixedDeltaTime;
 
-                if (direction == 1)
-                {
-                    rb.MovePosition(rb.position + Vector2.left) * dashSpeed;
-                }
-                else if (direction == 2)
-                {
-                    rb.MovePosition(rb.position + Vector2.right) * dashSpeed;
-                }
-                else if (direction == 3)
-                {
-                    rb.MovePosition(rb.position + Vector2.up) * dashSpeed;
-                }
-                else if (direction == 4)
-                { 
-                    rb.MovePosition(rb.position + Vector2.down) * dashSpeed;
-                }
+            Vector3 dir = transform.position+new Vector3(movement.x,movement.y,0).normalized * dashforce;
+            rb.position = Vector3.Lerp(transform.position,dir , AC.Evaluate(dashtimer/10));
+            
+            if(dashtimer > dashlength)
+            {
+                Cooldownholder = cooldown;
+                dashtimer = 0;
+                isdash = false;
             }
-        }*/
+
+        }
+    }
+
+    void Dashing()
+    {
+        if (Cooldownholder < 0)
+        {
+            isdash = true;
+        }
     }
 
     void SetAnime()
