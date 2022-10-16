@@ -67,7 +67,7 @@ public class P_grenade : MonoBehaviour
         Debug.DrawLine(test.transform.position, (test.transform.position + new Vector3(0,0,-3)) + new Vector3(g_rad, 0,0), Color.black, 3f);
         foreach (Collider2D col in colliders)
         {
-            Debug.Log(col.gameObject.name);
+            //Debug.Log(col.gameObject.name);
             CheckEntity(col);
         }
         Destroy(this.gameObject);
