@@ -13,6 +13,12 @@ public class P_grenade : MonoBehaviour
 
     private ShakeCameraControll shake;
 
+    [SerializeField]
+    private AudioSource source;
+    [SerializeField]
+    private AudioClip clip;
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -49,6 +55,9 @@ public class P_grenade : MonoBehaviour
 
     void explode()
     {
+        //audio
+        source.PlayOneShot(clip);
+
         //explosion animation
         shake.StartShake(0.3f, 0.7f, 0.7f);
         GameObject test = Instantiate(explosionEffect, transform.position, transform.rotation);

@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
         //audio
         source.PlayOneShot(clip);
 
-        Destroy(this.gameObject, 0.5f);
+        Destroy(this.gameObject, 1f);
 
     }
 
