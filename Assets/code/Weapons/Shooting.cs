@@ -10,6 +10,9 @@ public class Shooting : MonoBehaviour
     public Transform firepoint;
     public float bullSpread, bullforce, bullRange, numBull, bullDmg;
 
+    public AudioSource source;
+    public AudioClip clip;
+
     private ShakeCameraControll shv;
 
     public bool isMultishoot = false;
@@ -51,6 +54,8 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
+        source.PlayOneShot(clip);
+
         Vector3 normalizer = new Vector3(0f, 0f, -90f);
         GameObject bull = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
         bull.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);

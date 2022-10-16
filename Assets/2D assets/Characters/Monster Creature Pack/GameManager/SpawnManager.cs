@@ -18,24 +18,19 @@ public class SpawnManager : MonoBehaviour
 
     public Transform[] spawnAreas;
 
-    private float wraithSpawnRate = 10;
+    private float wraithSpawnRate = 30;
     private int wraithSpawnAmount = 5;
 
     private float timer2 = 0;
 
-
-    private float FireSkullSpawnRate = 20;
+    private float FireSkullSpawnRate = 50;
     private int FireSkullSpawnAmount = 5;
 
-
-    
     private float timer3 = 0;
 
-    private float MummySpawnRate = 60;
+    private float MummySpawnRate = 100;
     private int MummySpawnAmount = 1;
 
-
-   
     private float timer4 = 0;
 
     public Vector3 RandomSpawnLocation()
@@ -115,7 +110,7 @@ public class SpawnManager : MonoBehaviour
             //zombie
             if(zombieSpawnAmount < Max)
             {
-                zombieSpawnAmount += 5;
+                zombieSpawnAmount += 3;
             }
             else
             {
@@ -139,14 +134,14 @@ public class SpawnManager : MonoBehaviour
 
             if (wraithSpawnRate > 1f)
             {
-                wraithSpawnRate -= 0.05f;
+                wraithSpawnRate -= 0.5f;
             }
 
             //skull
 
             if (FireSkullSpawnAmount < Max)
             {
-                FireSkullSpawnAmount += 1;
+                FireSkullSpawnAmount += 2;
             }
             else
             {
@@ -155,7 +150,7 @@ public class SpawnManager : MonoBehaviour
 
             if (FireSkullSpawnRate > 1f)
             {
-                FireSkullSpawnRate -= 0.05f;
+                FireSkullSpawnRate -= 0.5f;
             }
 
             //mummy
