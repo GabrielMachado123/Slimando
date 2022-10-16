@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
 
     public HealthBar healthBar;
 
+    public GameObject deathScreen; 
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -47,9 +49,13 @@ public class PlayerHealth : MonoBehaviour
         Animator anim = GetComponentInChildren<Animator>();
         anim.SetBool("isDead", true);
 
-        Destroy(this.gameObject, 0.5f);
-
+        Destroy(this.gameObject, 1f);
+        StartCoroutine(ExecuteAfterTime(0.95f));
     }
 
-
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        deathScreen.SetActive(true);
+    }
 }

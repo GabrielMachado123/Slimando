@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Grenades : MonoBehaviour
 {
@@ -37,18 +38,21 @@ public class Grenades : MonoBehaviour
 
     void AtiraGrenade()
     {
-        if (unlock.isGrenandoUnlocked == true)
+        if (EventSystem.current.IsPointerOverGameObject() == false)
         {
-            Vector3 normalizer = new Vector3(0f, 0f, -90f);
-            GameObject grena = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
-            grena.GetComponent<P_grenade>().SetGrenadeValues(GDmg, GTimer, GForce, shv);
-            Rigidbody2D rbBull = grena.GetComponent<Rigidbody2D>();
-            rbBull.AddForce((grena.transform.up * GForce), ForceMode2D.Impulse);
-        }
-        else
-        {
-            unlockInfoText.SetActive(true);
-            StartCoroutine(ExecuteAfterTime(2));
+            if (unlock.isGrenandoUnlocked == true)
+            {
+                Vector3 normalizer = new Vector3(0f, 0f, -90f);
+                GameObject grena = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
+                grena.GetComponent<P_grenade>().SetGrenadeValues(GDmg, GTimer, GForce, shv);
+                Rigidbody2D rbBull = grena.GetComponent<Rigidbody2D>();
+                rbBull.AddForce((grena.transform.up * GForce), ForceMode2D.Impulse);
+            }
+            else
+            {
+                unlockInfoText.SetActive(true);
+                StartCoroutine(ExecuteAfterTime(2));
+            }
         }
     }
 
