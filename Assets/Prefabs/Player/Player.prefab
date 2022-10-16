@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 1286284569026227435}
   - component: {fileID: 1286284569026227432}
   - component: {fileID: 1286284569026227412}
+  - component: {fileID: 1729070721}
+  - component: {fileID: 1729070725}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -230,6 +232,32 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 0}
+  deathScreen: {fileID: 0}
+--- !u!114 &1729070721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286284569026227439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bdd72a712907b46bacf1939999163f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1729070725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286284569026227439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a535728260b1b24ca93c35baf89b490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: {fileID: 1286284569026227412}
 --- !u!1 &1286284570032166795
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +428,7 @@ MonoBehaviour:
   bullSpread: 20
   bullforce: 10
   bullRange: 1000
-  numBull: 3
+  numBull: 1
   bullDmg: 5
   isMultishoot: 0
   firerate: 0.5
