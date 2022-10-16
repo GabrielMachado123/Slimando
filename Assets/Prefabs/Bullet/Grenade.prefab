@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1661258935582626894}
   - component: {fileID: 6151428404638064264}
   - component: {fileID: 446393052710163221}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988b7386b701dd648b0ef610fbb3439c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 5389811616698550262, guid: 222ab543cfbbb454d8f7cbb18f941602, type: 3}

@@ -8,6 +8,9 @@ public class P_grenade : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [SerializeField]
+    private GameObject explosionEffect;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -15,6 +18,8 @@ public class P_grenade : MonoBehaviour
         if (g_timer <= 0)
         {
             explode();
+            GameObject test = Instantiate(explosionEffect,transform.position,transform.rotation);
+            Destroy(test, 0.5f);
         }
 
         g_timer -= Time.deltaTime;
@@ -38,9 +43,9 @@ public class P_grenade : MonoBehaviour
     void explode()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, g_rad);
-
         foreach (Collider2D col in colliders)
         {
+            Debug.Log(col.gameObject.name);
             CheckEntity(col);
         }
 
@@ -50,6 +55,21 @@ public class P_grenade : MonoBehaviour
 
     void CheckEntity(Collider2D col)
     {
+
+        if(col.gameObject.GetComponent<ZombieAI>() != null)
+        {
+            col.gameObject.GetComponent<ZombieAI>().TakeDamage(g_dmg);
+        }
+        /*
+        else if ()//add in case new enemy
+        {
+
+        }
+        */
+        else
+        {
+            Debug.Log("this is dumb , but also check if you but in the new reference script of the enemy");
+        }
 
     }
 
