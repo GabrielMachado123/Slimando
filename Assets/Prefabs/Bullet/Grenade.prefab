@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 192032938, guid: c0ab5465dfba0c242a12cf1612366586, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -538939068, guid: 0466c53cac506e643b96fc04bfa93593, type: 3}
+  m_Color: {r: 0.3093922, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.048557296}
+  m_Offset: {x: 0.000000029802322, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0666667, y: 0.9695523}
+  m_Size: {x: 0.7781169, y: 0.9695523}
   m_EdgeRadius: 0
 --- !u!50 &6151428404638064264
 Rigidbody2D:
@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 5389811616698550262, guid: 222ab543cfbbb454d8f7cbb18f941602, type: 3}
+  source: {fileID: 0}
+  clip: {fileID: 0}

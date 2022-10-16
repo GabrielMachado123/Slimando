@@ -10,9 +10,7 @@ public class P_grenade : MonoBehaviour
 
     [SerializeField]
     private GameObject explosionEffect;
-
     private ShakeCameraControll shake;
-
     [SerializeField]
     private AudioSource source;
     [SerializeField]
@@ -30,6 +28,11 @@ public class P_grenade : MonoBehaviour
 
         g_timer -= Time.deltaTime;
 
+    }
+
+    void Update()
+    {
+        //Debug.Log(ExpSystem.instance.GetExp());
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -58,7 +61,6 @@ public class P_grenade : MonoBehaviour
         //audio
         source.PlayOneShot(clip);
 
-        //explosion animation
         shake.StartShake(0.3f, 0.7f, 0.7f);
         GameObject test = Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(test, 0.5f);
@@ -90,7 +92,6 @@ public class P_grenade : MonoBehaviour
         }
         else if (col.transform.CompareTag("Player"))//add in case new enemy
         {
-            
             col.gameObject.GetComponent<PlayerHealth>().P_TakeDamage( Mathf.RoundToInt(g_dmg/2) );
         }
     }

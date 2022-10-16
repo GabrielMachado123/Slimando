@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class ShakeCameraControll : MonoBehaviour
 {
-    public static ShakeCameraControll instance;
+    public static ShakeCameraControll lol;
 
     [SerializeField]
     private float length, power, rotationMultiplier;
     private float StartTimeRemaining, ShakePower, ShakeFadeTimer, ShakeRotation;
+    public bool isShaking = false;
 
     void LateUpdate()
     {
 
-        if (StartTimeRemaining > 0)
+        if (StartTimeRemaining > 0 && isShaking == false)
         {
             StartTimeRemaining -= Time.deltaTime;
-
+            isShaking = true;
             float xAmount = Random.Range(-1f, 1f) * ShakePower;
             float yAmount = Random.Range(-1f, 1f) * ShakePower;
 
@@ -29,6 +30,7 @@ public class ShakeCameraControll : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0, 0, ShakeRotation * Random.Range(-1f, 1f));
+        isShaking = false;
 
     }
 

@@ -14,6 +14,11 @@ public class ExpSystem : MonoBehaviour
 
     public static ExpSystem instance;
 
+    public int GetExp()
+    {
+        return currentExp;
+    }
+
     private void Awake()
     {
         if (instance == null)
