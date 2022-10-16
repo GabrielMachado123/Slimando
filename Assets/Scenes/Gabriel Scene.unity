@@ -1105,7 +1105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503737631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77246,6 +77246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  healthBar: {fileID: 0}
 --- !u!114 &2020171683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77261,6 +77262,10 @@ MonoBehaviour:
   rb: {fileID: 2020171685}
   PlayerSpeed: 10
   animator: {fileID: 632973336}
+  isdash: 0
+  cooldown: 0
+  dashforce: 0
+  dashlength: 0
 --- !u!61 &2020171684
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77441,7 +77446,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiesToSpaw: []
   ZombiesSpawned: []
+  WraithToSpawn: []
+  WraithSpanwed: []
+  FireSkullToSpawn: []
+  FireSkullSpawned: []
   ZombiePrefab: {fileID: 1064830918338849477, guid: 24627a004f7d67842ac627992a393c7b, type: 3}
+  WraithPrefab: {fileID: 8059589058646686774, guid: ce6396dd5ff3fa946ade79dc3e80b77a, type: 3}
+  FireSkullPrefab: {fileID: 2728126764340823017, guid: 9996a8d150622a049b8ee67d632be9d2, type: 3}
 --- !u!114 &2072162218
 MonoBehaviour:
   m_ObjectHideFlags: 0
