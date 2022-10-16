@@ -45,8 +45,11 @@ public class WraithAI : MonoBehaviour
         hashDieL = Animator.StringToHash("DL");
         hashDieR = Animator.StringToHash("DR");
 
-        Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        }
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();

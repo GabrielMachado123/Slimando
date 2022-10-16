@@ -12,7 +12,7 @@ public class SpawnManager : MonoBehaviour
 
     private float timer = 0;
 
-    private int MaxZombies = 250;
+    private int Max = 250;
 
     private Bucket bucket;
 
@@ -21,16 +21,22 @@ public class SpawnManager : MonoBehaviour
     private float wraithSpawnRate = 10;
     private int wraithSpawnAmount = 5;
 
-    private int MaxWraith = 250;
     private float timer2 = 0;
 
 
-    private float FireSkullSpawnRate = 15;
-    private int FireSkullSpawnAmount = 1;
+    private float FireSkullSpawnRate = 20;
+    private int FireSkullSpawnAmount = 5;
 
 
-    private int MaxSkull = 250;
+    
     private float timer3 = 0;
+
+    private float MummySpawnRate = 60;
+    private int MummySpawnAmount = 1;
+
+
+   
+    private float timer4 = 0;
 
     public Vector3 RandomSpawnLocation()
     {
@@ -51,6 +57,7 @@ public class SpawnManager : MonoBehaviour
             timer += Time.deltaTime;
             timer2 += Time.deltaTime;
             timer3 += Time.deltaTime;
+            timer4 += Time.deltaTime;
 
             if(timer > zombieSpawnRate)
             {
@@ -89,18 +96,30 @@ public class SpawnManager : MonoBehaviour
                 timer3 = 0;
             }
 
+            if (timer4 > MummySpawnRate)
+            {
+                for (int i = 0; i < MummySpawnAmount; i++)
+                {
+                    if (bucket.MummyToSpawn.Count != 0)
+                    {
+                        bucket.SpawnMummy(RandomSpawnLocation());
+                    }
+                }
+                timer4 = 0;
+            }
+
         }
         else
         {
             timeOffset += timeOffset;
-
-            if(zombieSpawnAmount < MaxZombies)
+            //zombie
+            if(zombieSpawnAmount < Max)
             {
                 zombieSpawnAmount += 5;
             }
             else
             {
-                zombieSpawnAmount = MaxZombies;
+                zombieSpawnAmount = Max;
             }
 
             if(zombieSpawnRate > 1f)
@@ -108,14 +127,14 @@ public class SpawnManager : MonoBehaviour
                 zombieSpawnRate -= 0.1f;
             }
 
-
-            if (wraithSpawnAmount < MaxWraith)
+            //wraith
+            if (wraithSpawnAmount < Max)
             {
                 wraithSpawnAmount += 1;
             }
             else
             {
-                wraithSpawnAmount = MaxWraith;
+                wraithSpawnAmount = Max;
             }
 
             if (wraithSpawnRate > 1f)
@@ -123,20 +142,35 @@ public class SpawnManager : MonoBehaviour
                 wraithSpawnRate -= 0.05f;
             }
 
+            //skull
 
-
-            if (FireSkullSpawnAmount < MaxSkull)
+            if (FireSkullSpawnAmount < Max)
             {
                 FireSkullSpawnAmount += 1;
             }
             else
             {
-                FireSkullSpawnAmount = MaxSkull;
+                FireSkullSpawnAmount = Max;
             }
 
             if (FireSkullSpawnRate > 1f)
             {
                 FireSkullSpawnRate -= 0.05f;
+            }
+
+            //mummy
+            if (MummySpawnAmount < Max)
+            {
+                MummySpawnAmount += 1;
+            }
+            else
+            {
+                MummySpawnAmount = Max;
+            }
+
+            if (MummySpawnRate > 1f)
+            {
+                MummySpawnRate -= 5f;
             }
 
         }
