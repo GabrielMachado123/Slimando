@@ -185,8 +185,34 @@ MonoBehaviour:
   animator: {fileID: 1286284570032154742}
   isdash: 0
   cooldown: 3
-  dashforce: 50
+  dashforce: 5
   dashlength: 1
+  dashtimer: 0
+  Cooldownholder: 0
+  AC:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.95950735
+      outSlope: 0.95950735
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.1
+    - serializedVersion: 3
+      time: 1.0166626
+      value: 1
+      inSlope: 1.3647486
+      outSlope: 1.3647486
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.32786617
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1286284569026227412
 MonoBehaviour:
   m_ObjectHideFlags: 0

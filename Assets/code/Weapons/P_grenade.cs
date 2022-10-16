@@ -11,6 +11,8 @@ public class P_grenade : MonoBehaviour
     [SerializeField]
     private GameObject explosionEffect;
 
+    private ShakeCameraControll shake;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -36,17 +38,19 @@ public class P_grenade : MonoBehaviour
 
     }
 
-    public void SetGrenadeValues(float dmg, float timer, float radius)
+    public void SetGrenadeValues(float dmg, float timer, float radius,ShakeCameraControll shv)
     {
         g_timer = timer;
         g_dmg = dmg;
         g_rad = radius;
+        shake = shv;
     }
 
 
     void explode()
     {
         //explosion animation
+        shake.StartShake(0.3f, 0.7f, 0.7f);
         GameObject test = Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(test, 0.5f);
 
@@ -57,9 +61,7 @@ public class P_grenade : MonoBehaviour
             Debug.Log(col.gameObject.name);
             CheckEntity(col);
         }
-
         Destroy(this.gameObject);
-
     }
 
     void CheckEntity(Collider2D col)

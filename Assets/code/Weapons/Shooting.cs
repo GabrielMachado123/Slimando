@@ -7,20 +7,28 @@ public class Shooting : MonoBehaviour
 
     public GameObject bullPrefab;
     public Transform firepoint;
-    public float bullSpread ,bullforce, bullRange, numBull, bullDmg;
+    public float bullSpread, bullforce, bullRange, numBull, bullDmg;
 
+    private ShakeCameraControll shv;
 
     public bool isMultishoot = false;
     public float firerate = 1f, nextfire = 0f;
     private Vector2 mousePos;
+
+    void Awake()
+    {
+        shv = Camera.main.GetComponent<ShakeCameraControll>();
+    }
 
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //lazy stuff idc
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextfire )//left click
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextfire)//left click
         {
+            shv.StartShake(0.1f, 0.4f, 0.3f);
+
             nextfire = Time.time + firerate;
             if (!isMultishoot)
                 Shoot();
@@ -55,16 +63,16 @@ public class Shooting : MonoBehaviour
         float angle_adder = total_spread / numBull;
         float uni_rot = -bullSpread;
 
-        if(numBull >= 3)
+        if (numBull >= 3)
         {
-            for(int i=0;i<numBull;i++ )
+            for (int i = 0; i < numBull; i++)
             {
                 //this makes it always shoot to the front
-                Vector3 normalizer = new Vector3(0f,0f,-90f);
+                Vector3 normalizer = new Vector3(0f, 0f, -90f);
                 //saves the new rotation for each bullet
-                Vector3 spread_v = new Vector3(0,0,uni_rot);
+                Vector3 spread_v = new Vector3(0, 0, uni_rot);
                 //associating an instatiating bullet to a varible for later use
-                GameObject bullet = Instantiate(bullPrefab,firepoint.position,Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v+normalizer));
+                GameObject bullet = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v + normalizer));
                 bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
@@ -79,14 +87,14 @@ public class Shooting : MonoBehaviour
         }
         else
         {
-            for(int i=0;i<2;i++ )
+            for (int i = 0; i < 2; i++)
             {
                 //this makes it always shoot to the front
-                Vector3 normalizer = new Vector3(0f,0f,-90f);
+                Vector3 normalizer = new Vector3(0f, 0f, -90f);
                 //saves the new rotation for each bullet
-                Vector3 spread_v = new Vector3(0,0,uni_rot);
+                Vector3 spread_v = new Vector3(0, 0, uni_rot);
                 //associating an instatiating bullet to a varible for later use
-                GameObject bullet = Instantiate(bullPrefab,firepoint.position,Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v+normalizer));
+                GameObject bullet = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v + normalizer));
                 bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
