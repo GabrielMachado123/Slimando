@@ -215,6 +215,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  unlock: {fileID: 0}
+  unlockInfoText: {fileID: 0}
 --- !u!114 &1286284569026227412
 MonoBehaviour:
   m_ObjectHideFlags: 0

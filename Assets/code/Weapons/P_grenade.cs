@@ -17,7 +17,6 @@ public class P_grenade : MonoBehaviour
     private AudioClip clip;
 
 
-    // Update is called once per frame
     void FixedUpdate()
     {
 

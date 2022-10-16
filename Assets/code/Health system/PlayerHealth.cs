@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private AudioSource source;
     [SerializeField]
     private AudioClip clip;
+    public GameObject deathScreen; 
 
     void Awake()
     {
@@ -56,7 +57,12 @@ public class PlayerHealth : MonoBehaviour
 
         Destroy(this.gameObject, 1f);
 
+        StartCoroutine(ExecuteAfterTime(0.95f));
     }
 
-
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        deathScreen.SetActive(true);
+    }
 }
