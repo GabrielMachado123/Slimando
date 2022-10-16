@@ -70148,6 +70148,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1343582063, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.b
+      value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343582063, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343582063, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.r
+      value: 0.36078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857598507889, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.b
+      value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857598507889, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857598507889, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.r
+      value: 0.36078432
+      objectReference: {fileID: 0}
     - target: {fileID: 3920391857689325330, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -70171,6 +70195,18 @@ PrefabInstance:
     - target: {fileID: 3920391858014282441, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391858019310233, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.b
+      value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391858019310233, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391858019310233, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_Color.r
+      value: 0.36078432
       objectReference: {fileID: 0}
     - target: {fileID: 3920391858626897706, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMax.x
