@@ -154,7 +154,7 @@ public class MummyAI : MonoBehaviour
         InBucket();
         collider.enabled = true;
         transform.position = BP;
-        bucket.PutInBucketZombie(gameObject);
+        bucket.PutInBucketMummy(gameObject);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         isdying = false;

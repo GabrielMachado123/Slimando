@@ -8,6 +8,9 @@ public class P_grenade : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public AudioSource source;
+    public AudioClip clip;
+
     [SerializeField]
     private GameObject explosionEffect;
 
@@ -49,6 +52,7 @@ public class P_grenade : MonoBehaviour
 
     void explode()
     {
+        source.PlayOneShot(clip);
         //explosion animation
         shake.StartShake(0.3f, 0.7f, 0.7f);
         GameObject test = Instantiate(explosionEffect, transform.position, transform.rotation);
@@ -66,6 +70,7 @@ public class P_grenade : MonoBehaviour
 
     void CheckEntity(Collider2D col)
     {
+
 
         if (col.gameObject.GetComponent<ZombieAI>() != null)
         {

@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
 
     public HealthBar healthBar;
 
+    public AudioSource source;
+    public AudioClip clip;
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -44,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
 
     void P_Death()
     {
+        source.PlayOneShot(clip);
         Animator anim = GetComponentInChildren<Animator>();
         anim.SetBool("isDead", true);
 
