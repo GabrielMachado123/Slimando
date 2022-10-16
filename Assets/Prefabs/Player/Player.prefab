@@ -392,7 +392,9 @@ MonoBehaviour:
   bullPrefab: {fileID: 8370561215458432350, guid: f2f056a4d24e9eb49a519d8b4f02ede6, type: 3}
   firepoint: {fileID: 1286284568670653121}
   GDmg: 50
-  GRadius: 4
+  GRadius: 0.1
   GCooldown: 3
   GTimer: 3
   GForce: 4
+  firerate: 3
+  nextfire: 0
