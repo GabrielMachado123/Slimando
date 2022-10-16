@@ -125,7 +125,7 @@ public class SpawnManager : MonoBehaviour
             //wraith
             if (wraithSpawnAmount < Max)
             {
-                wraithSpawnAmount += 1;
+                wraithSpawnAmount += 2;
             }
             else
             {
@@ -134,14 +134,14 @@ public class SpawnManager : MonoBehaviour
 
             if (wraithSpawnRate > 1f)
             {
-                wraithSpawnRate -= 0.5f;
+                wraithSpawnRate -= 5f;
             }
 
             //skull
 
             if (FireSkullSpawnAmount < Max)
             {
-                FireSkullSpawnAmount += 2;
+                FireSkullSpawnAmount += 4;
             }
             else
             {
@@ -150,13 +150,13 @@ public class SpawnManager : MonoBehaviour
 
             if (FireSkullSpawnRate > 1f)
             {
-                FireSkullSpawnRate -= 0.5f;
+                FireSkullSpawnRate -= 3f;
             }
 
             //mummy
             if (MummySpawnAmount < Max)
             {
-                MummySpawnAmount += 1;
+                MummySpawnAmount += 2;
             }
             else
             {
@@ -165,7 +165,7 @@ public class SpawnManager : MonoBehaviour
 
             if (MummySpawnRate > 1f)
             {
-                MummySpawnRate -= 5f;
+                MummySpawnRate -= 10f;
             }
 
         }
