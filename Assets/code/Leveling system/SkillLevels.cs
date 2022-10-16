@@ -8,15 +8,20 @@ public class SkillLevels : MonoBehaviour
     private int damageLevel, healthLevel, splitandoLevel, grenandoLevel, dashandoLevel, multiplandoLevel;
     private int damageNextLevel, healthNextLevel, splitandoNextLevel, grenandoNextLevel, dashandoNextLevel, multiplandoNextLevel;
     public TextMeshProUGUI damageLevelText, healthLevelText, splitandoLevelText, grenandoLevelText, dashandoLevelText, multiplandoLevelText;
-    private bool isDashUnlocked, isGrenandoUnlocked, isMultiplandoUnlocked;
+    public bool isDashUnlocked, isGrenandoUnlocked, isMultiplandoUnlocked;
 
     public GameObject unlockDashButton, unlockGrenandoButton, unlockMultiplando;
     public GameObject upgradeButtonSplitando, upgradeButtonDash, upgradeButtonGrenando, upgradeButtonMultiplando;
 
     public HealthBar hpBar;
     public PlayerHealth hp;
+
     public P_Bullet dmg;
     public Shooting shoot;
+
+    public Grenades grenade;
+
+    public PlayerMovement dash;
 
     private void Start()
     {
@@ -75,6 +80,8 @@ public class SkillLevels : MonoBehaviour
             unlockMultiplando.SetActive(false);
             multiplandoNextLevel = 2;
             multiplandoLevelText.text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
+            shoot.numBull += 1;
+            shoot.isMultishoot = true;
         }
     }
 
@@ -83,6 +90,7 @@ public class SkillLevels : MonoBehaviour
         damageLevel++;
         damageNextLevel = damageLevel + 1;
         dmg.SetBulletDMG(shoot.bullDmg += 2);
+        grenade.GDmg += 2;
         damageLevelText.text = "Level\n" + damageLevel.ToString() + " --> " + damageNextLevel.ToString();
     }
 
@@ -92,7 +100,7 @@ public class SkillLevels : MonoBehaviour
         healthNextLevel = healthLevel + 1;
         hp.P_IncreaseMaxHP(15f);
         hpBar.SetMaxHealth(hp.maxHealth += 15);
-        hpBar.SetHealth(hp.currentHealth += 15);
+        hpBar.SetHealth(hp.maxHealth);
         healthLevelText.text = "Level\n" + healthLevel.ToString() + " --> " + healthNextLevel.ToString();
     }
 
@@ -102,13 +110,13 @@ public class SkillLevels : MonoBehaviour
         splitandoNextLevel = splitandoLevel + 1;
         dmg.SetBulletDMG(shoot.bullDmg += 5);
         splitandoLevelText.text = "Level\n" + splitandoLevel.ToString() + " --> " + splitandoNextLevel.ToString();
-
+        shoot.firerate -= 0.15f;
         if (splitandoLevel == 8)
         {
             splitandoLevelText.text = "Level\n" + splitandoLevel.ToString();
             upgradeButtonSplitando.SetActive(false);
         }
-    }
+    } 
 
     public void LevelUpGrenando()
     {
@@ -116,7 +124,8 @@ public class SkillLevels : MonoBehaviour
         {
             grenandoLevel++;
             grenandoNextLevel = grenandoLevel + 1;
-
+            grenade.firerate -= 0.15f;
+            grenade.GDmg += 40;
             grenandoLevelText.text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
 
             if (grenandoLevel == 8)
@@ -134,7 +143,7 @@ public class SkillLevels : MonoBehaviour
         {
             dashandoLevel++;
             dashandoNextLevel = dashandoLevel + 1;
-
+            dash.cooldown -= 0.5f;
             dashandoLevelText.text = "Level\n" + dashandoLevel.ToString() + " --> " + dashandoNextLevel.ToString();
 
             if (dashandoLevel == 5)
@@ -152,7 +161,7 @@ public class SkillLevels : MonoBehaviour
         {
             multiplandoLevel++;
             multiplandoNextLevel = multiplandoLevel + 1;
-
+            shoot.numBull += 1;
             multiplandoLevelText.text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
 
             if (multiplandoLevel == 3)
