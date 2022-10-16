@@ -45,10 +45,11 @@ public class FireSkullAI : MonoBehaviour
 
         hashDieL = Animator.StringToHash("DL");
         hashDieR = Animator.StringToHash("DR");
-
-        Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        }
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
@@ -68,7 +69,7 @@ public class FireSkullAI : MonoBehaviour
         {
             if (health < 0)
             {
-                if (direction.x > 0 && isdying == false)
+                if (direction.x < 0 && isdying == false)
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieR);
@@ -184,7 +185,7 @@ public class FireSkullAI : MonoBehaviour
             bull.GetComponent<FireBall>().SetDamage(damage);
             Rigidbody2D rbBull = bull.GetComponent<Rigidbody2D>();
             Vector3 direction = (Target.transform.position - transform.position).normalized;
-            rbBull.velocity = direction * bullforce;
+            rbBull.velocity = direction * bullforce;           
         }
    
     }

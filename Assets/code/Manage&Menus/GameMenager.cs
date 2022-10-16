@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class GameMenager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void PauseMenu()

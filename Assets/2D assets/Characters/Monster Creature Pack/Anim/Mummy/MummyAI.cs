@@ -1,8 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class ZombieAI : MonoBehaviour
+public class MummyAI : MonoBehaviour
 {
     public EnemyInfo enemyInfo;
     private Bucket bucket;
@@ -27,7 +27,7 @@ public class ZombieAI : MonoBehaviour
     private float damage;
     private float health;
 
-   
+
     private bool isdying = false;
 
     private Vector3 direction;
@@ -44,11 +44,13 @@ public class ZombieAI : MonoBehaviour
 
         hashDieL = Animator.StringToHash("DL");
         hashDieR = Animator.StringToHash("DR");
-        if (GameObject.FindGameObjectWithTag("Player") != null)
+        if(GameObject.FindGameObjectWithTag("Player") != null)
         {
             Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         }
+    
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
@@ -58,13 +60,13 @@ public class ZombieAI : MonoBehaviour
         health = enemyInfo.health;
 
         BP = enemyInfo.GetBucketPosition();
-        
+
     }
 
-    
+
     void Update()
     {
-        if(Target != null)
+        if (Target != null)
         {
             if (health < 0)
             {
@@ -72,7 +74,7 @@ public class ZombieAI : MonoBehaviour
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieR);
-                    ExpSystem.instance.GainExp(7);
+                    ExpSystem.instance.GainExp(80);
                 }
                 else if (isdying == false)
                 {
@@ -114,8 +116,8 @@ public class ZombieAI : MonoBehaviour
                 }
             }
         }
-            
-        
+
+
     }
 
 
@@ -148,7 +150,7 @@ public class ZombieAI : MonoBehaviour
     }
 
     private void die()
-    {       
+    {
         InBucket();
         collider.enabled = true;
         transform.position = BP;
@@ -160,17 +162,17 @@ public class ZombieAI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             isCollinding = true;
         }
-        
-        if(collision.gameObject.tag == "PlayerBullet")
+
+        if (collision.gameObject.tag == "PlayerBullet")
         {
-            
+
             float damage;
             damage = collision.gameObject.GetComponent<P_Bullet>().GetBulletDmg();
-         
+
             health -= damage;
         }
     }
@@ -193,5 +195,4 @@ public class ZombieAI : MonoBehaviour
         playerHealth.P_TakeDamage(damage);
     }
 
-  
 }
