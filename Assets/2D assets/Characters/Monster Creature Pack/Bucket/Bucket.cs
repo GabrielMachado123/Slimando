@@ -32,6 +32,7 @@ public class Bucket : MonoBehaviour
             CreateZombie();
             CreateWraith();
             CreateFireSkull();
+            CreateMummy();
         }
 
   

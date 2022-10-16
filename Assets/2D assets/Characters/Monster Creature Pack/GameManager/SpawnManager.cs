@@ -23,19 +23,14 @@ public class SpawnManager : MonoBehaviour
 
     private float timer2 = 0;
 
-
     private float FireSkullSpawnRate = 20;
     private int FireSkullSpawnAmount = 5;
 
-
-    
     private float timer3 = 0;
 
-    private float MummySpawnRate = 60;
+    private float MummySpawnRate = 40;
     private int MummySpawnAmount = 1;
 
-
-   
     private float timer4 = 0;
 
     public Vector3 RandomSpawnLocation()
