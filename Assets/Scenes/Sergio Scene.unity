@@ -70134,6 +70134,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3920391859055544242, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayPressed
+      objectReference: {fileID: 0}
     - target: {fileID: 3920391859232778334, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: hp
       value: 
@@ -70158,6 +70162,10 @@ PrefabInstance:
       propertyPath: grenade
       value: 
       objectReference: {fileID: 278886110}
+    - target: {fileID: 3920391859232778337, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: toturialBox
+      value: 
+      objectReference: {fileID: 3920391857892723012}
     - target: {fileID: 3920391859232778338, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -70248,3 +70256,8 @@ PrefabInstance:
       objectReference: {fileID: 1729070716}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+--- !u!1 &3920391857892723012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 414356603310637506, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+  m_PrefabInstance: {fileID: 3920391857892723011}
+  m_PrefabAsset: {fileID: 0}

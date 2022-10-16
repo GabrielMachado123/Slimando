@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
-    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu;
+    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu, toturialBox;
     private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen;
 
     public static GameMenager instance;
@@ -15,13 +15,19 @@ public class GameMenager : MonoBehaviour
     {
         Time.timeScale = 0;
     }
+
+    public void PlayPressed()
+    {
+        startMenu.SetActive(false);
+    }
+
     public void StartGame()
     {
         if (isGameStarted == false)
         {
             isGameStarted = true;
             Time.timeScale = 1;
-            startMenu.SetActive(false);
+            toturialBox.SetActive(false);
         }
     }
 
