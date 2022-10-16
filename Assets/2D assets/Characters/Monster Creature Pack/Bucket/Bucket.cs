@@ -14,11 +14,17 @@ public class Bucket : MonoBehaviour
     public List<GameObject> FireSkullToSpawn = new List<GameObject>();
     public List<GameObject> FireSkullSpawned = new List<GameObject>();
 
+
+    public List<GameObject> MummyToSpawn = new List<GameObject>();
+    public List<GameObject> MummySpawned = new List<GameObject>();
+
     public GameObject ZombiePrefab;
 
     public GameObject WraithPrefab;
 
     public GameObject FireSkullPrefab;
+
+    public GameObject MummyPrefab;
     void Start()
     {
         for (int i = 0; i < 1000; i++)
@@ -97,6 +103,29 @@ public class Bucket : MonoBehaviour
         FireSkullToSpawn.Remove(skull);
         FireSkullSpawned.Add(skull);
         skull.SetActive(true);
+
+    }
+
+    public void CreateMummy()
+    {
+        GameObject mummy = Instantiate(MummyPrefab, new Vector3(5000, 5000, 5000), Quaternion.identity);
+        MummyToSpawn.Add(mummy);
+        mummy.SetActive(false);
+    }
+
+    public void PutInBucketMummy(GameObject mummy)
+    {
+        MummySpawned.Remove(mummy);
+        MummyToSpawn.Add(mummy);
+    }
+
+    public void SpawnMummy(Vector3 position)
+    {
+        GameObject mummy = MummyToSpawn[0];
+        mummy.transform.position = position;
+        MummyToSpawn.Remove(mummy);
+        MummySpawned.Add(mummy);
+        mummy.SetActive(true);
 
     }
 }
