@@ -64,10 +64,10 @@ public class P_grenade : MonoBehaviour
         Destroy(test, 0.5f);
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, g_rad);
-        Debug.DrawLine(test.transform.position, (test.transform.position + new Vector3(0,0,-3)) + new Vector3(g_rad, 0,0), Color.black, 3f);
+        
         foreach (Collider2D col in colliders)
         {
-            //Debug.Log(col.gameObject.name);
+          
             CheckEntity(col);
         }
         Destroy(this.gameObject);
@@ -80,16 +80,19 @@ public class P_grenade : MonoBehaviour
         {
             col.gameObject.GetComponent<ZombieAI>().TakeDamage(g_dmg);
         }
+        else if(col.gameObject.GetComponent<WraithAI>() != null)
+        {
+            col.gameObject.GetComponent<WraithAI>().TakeDamage(g_dmg);
+        }
+        else if (col.gameObject.GetComponent<FireSkullAI>() != null)
+        {
+            col.gameObject.GetComponent<FireSkullAI>().TakeDamage(g_dmg);
+        }
         else if (col.transform.CompareTag("Player"))//add in case new enemy
         {
-            Debug.Log("immagine blowing yourself up");
+            
             col.gameObject.GetComponent<PlayerHealth>().P_TakeDamage( Mathf.RoundToInt(g_dmg/2) );
         }
-        else
-        {
-            Debug.Log("this is dumb , but also check if you but in the new reference script of the enemy");
-        }
-
     }
 
 

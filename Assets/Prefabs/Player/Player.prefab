@@ -512,9 +512,9 @@ MonoBehaviour:
   bullforce: 10
   bullRange: 1000
   numBull: 3
-  bullDmg: 0
-  isMultishoot: 1
-  firerate: 1
+  bullDmg: 5
+  isMultishoot: 0
+  firerate: 0.5
   nextfire: 0
   source: {fileID: 6904160781919223577}
   clip: {fileID: 8300000, guid: 7a7c54084f5107d48985d5dfefb37cfa, type: 3}

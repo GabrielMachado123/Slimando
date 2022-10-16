@@ -63,23 +63,27 @@ public class ZombieAI : MonoBehaviour
     
     void Update()
     {
+        if(Target != null)
+        {
             if (health < 0)
             {
-            if (direction.x > 0 && isdying == false)
-            {
-                isdying = true;
-                anim.SetTrigger(hashDieR);
-            }
-            else if(isdying == false)
-            {
-                isdying = true;
-                anim.SetTrigger(hashDieL);
-            }
+                if (direction.x < 0 && isdying == false)
+                {
+                    isdying = true;
+                    anim.SetTrigger(hashDieR);
+                    ExpSystem.instance.GainExp(7);
+                }
+                else if (isdying == false)
+                {
+                    isdying = true;
+                    anim.SetTrigger(hashDieL);
+                    ExpSystem.instance.GainExp(7);
+                }
 
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            collider.enabled = false;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                collider.enabled = false;
             }
-           else if (!isCollinding)
+            else if (!isCollinding)
             {
                 direction = (Target.transform.position - transform.position).normalized;
                 rb.velocity = direction * speed;
@@ -108,6 +112,8 @@ public class ZombieAI : MonoBehaviour
                     anim.SetTrigger(hashAttDown);
                 }
             }
+        }
+            
         
     }
 
@@ -184,7 +190,7 @@ public class ZombieAI : MonoBehaviour
 
     public void DealDamage()
     {
-        playerHealth.currentHealth -= damage;
+        playerHealth.P_TakeDamage(damage);
     }
 
   
