@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class P_Bullet : MonoBehaviour
 {
-    private float bulletDMG; 
+    private float bulletDMG;
 
     public void SetBulletDMG( float dmg)
     {

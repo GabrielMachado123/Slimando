@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 701fc996cedbe63488496f0f487f266a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Liquidism part 2
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 29d1558f3fbf7ef4c85a231c3c45907a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public Rigidbody2D rb;
     public float PlayerSpeed = 50f;
 
@@ -16,9 +15,13 @@ public class PlayerMovement : MonoBehaviour
 
     //dash variables
     public bool isdash = false;
-    public float cooldown, dashforce, dashlength;
+    public float cooldown=3f, dashforce, dashlength=0.5f;
 
-    private float dashtimer;
+    [SerializeField]
+    private float dashtimer,Cooldownholder=0f;
+
+    [SerializeField]
+    private AnimationCurve AC;
 
     void Update()
     {
@@ -27,13 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
         SetAnime();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) )
         {
-            dashtimer = dashlength;
             Dashing();
-
         }
-
+            Cooldownholder -= Time.deltaTime;
 
     }
 
@@ -44,25 +45,27 @@ public class PlayerMovement : MonoBehaviour
             rb.MovePosition(rb.position + (movement * PlayerSpeed) * Time.deltaTime);
         else
         {
-            rb.AddForce(rb.position + (movement * dashforce) * Time.deltaTime);
+            dashtimer += Time.fixedDeltaTime;
+
+            Vector3 dir = transform.position+new Vector3(movement.x,movement.y,0).normalized * dashforce;
+            rb.position = Vector3.Lerp(transform.position,dir , AC.Evaluate(dashtimer/10));
+            
+            if(dashtimer > dashlength)
+            {
+                Cooldownholder = cooldown;
+                dashtimer = 0;
+                isdash = false;
+            }
+
         }
     }
 
     void Dashing()
     {
-        if(dashtimer > 0)
+        if (Cooldownholder < 0)
         {
-            dashtimer -= Time.deltaTime;
             isdash = true;
         }
-        else
-        {
-            dashtimer = 0;
-            rb.velocity = Vector2.zero;
-            isdash = false;
-        }
-
-
     }
 
     void SetAnime()
