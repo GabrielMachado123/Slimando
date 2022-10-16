@@ -7,19 +7,21 @@ public class FireBall : MonoBehaviour
     private float power;
     private int hashExplosion;
     private Animator anim;
+    private Rigidbody2D rb;
 
 
     private void Start()
     {
         hashExplosion = Animator.StringToHash("Explode");
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            gameObject.GetComponent<PlayerHealth>().P_TakeDamage(power);
+            collision.gameObject.GetComponent<PlayerHealth>().P_TakeDamage(power);
         }
 
         Explode();
@@ -38,6 +40,7 @@ public class FireBall : MonoBehaviour
 
     private void Explode()
     {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
         anim.SetTrigger(hashExplosion);
     }
 }
