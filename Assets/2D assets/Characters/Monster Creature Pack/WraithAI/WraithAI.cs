@@ -63,47 +63,50 @@ public class WraithAI : MonoBehaviour
 
     void Update()
     {
-        if (health < 0)
+        if (Target != null)
         {
-           if(!isdying)
+            if (health < 0)
             {
-                isdying = true;
-                anim.SetTrigger(hashDieR);
-            }
-                        
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            collider.enabled = false;
-        }
-        else if (!isCollinding)
-        {
-            direction = (Target.transform.position - transform.position).normalized;
-            rb.velocity = direction * speed;
-            anim.SetFloat("Horizontal", direction.x);
-            anim.SetFloat("Vertical", direction.y);
-        }
-        else if (!isattacking)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            isattacking = true;
+                if (!isdying)
+                {
+                    isdying = true;
+                    anim.SetTrigger(hashDieR);
+                    ExpSystem.instance.GainExp(15);
+                }
 
-            if (direction.x > 0 && direction.y < 0.5 && direction.y > -0.5)
-            {
-                anim.SetTrigger(hashAttr);
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                collider.enabled = false;
             }
-            else if (direction.x < 0 && direction.y < 0.5 && direction.y > -0.5)
+            else if (!isCollinding)
             {
-                anim.SetTrigger(hashAttl);
+                direction = (Target.transform.position - transform.position).normalized;
+                rb.velocity = direction * speed;
+                anim.SetFloat("Horizontal", direction.x);
+                anim.SetFloat("Vertical", direction.y);
             }
-            else if (direction.y > 0)
+            else if (!isattacking)
             {
-                anim.SetTrigger(hashAttUp);
-            }
-            else
-            {
-                anim.SetTrigger(hashAttDown);
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                isattacking = true;
+
+                if (direction.x > 0 && direction.y < 0.5 && direction.y > -0.5)
+                {
+                    anim.SetTrigger(hashAttr);
+                }
+                else if (direction.x < 0 && direction.y < 0.5 && direction.y > -0.5)
+                {
+                    anim.SetTrigger(hashAttl);
+                }
+                else if (direction.y > 0)
+                {
+                    anim.SetTrigger(hashAttUp);
+                }
+                else
+                {
+                    anim.SetTrigger(hashAttDown);
+                }
             }
         }
-
     }
 
 
@@ -137,7 +140,6 @@ public class WraithAI : MonoBehaviour
 
     private void die()
     {
-
         InBucket();
         collider.enabled = true;
         transform.position = BP;
@@ -179,6 +181,6 @@ public class WraithAI : MonoBehaviour
 
     public void DealDamage()
     {
-        playerHealth.currentHealth -= damage;
+        playerHealth.P_TakeDamage(damage);
     }
 }

@@ -64,52 +64,56 @@ public class FireSkullAI : MonoBehaviour
 
     void Update()
     {
-        if (health < 0)
+        if (Target != null)
         {
-            if (direction.x > 0 && isdying == false)
+            if (health < 0)
             {
-                isdying = true;
-                anim.SetTrigger(hashDieR);
-            }
-            else if (isdying == false)
-            {
-                isdying = true;
-                anim.SetTrigger(hashDieL);
-            }
+                if (direction.x > 0 && isdying == false)
+                {
+                    isdying = true;
+                    anim.SetTrigger(hashDieR);
+                    ExpSystem.instance.GainExp(25);
+                }
+                else if (isdying == false)
+                {
+                    ExpSystem.instance.GainExp(25);
+                    isdying = true;
+                    anim.SetTrigger(hashDieL);
+                }
 
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            collider.enabled = false;
-        }    
-        else if (!isattacking && (Vector3.Distance(transform.position, Target.transform.position) < 10))
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            isattacking = true;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                collider.enabled = false;
+            }
+            else if (!isattacking && (Vector3.Distance(transform.position, Target.transform.position) < 10))
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                isattacking = true;
 
-            if (direction.x > 0 && direction.y < 0.5 && direction.y > -0.5)
-            {
-                anim.SetTrigger(hashAttr);
-            }
-            else if (direction.x < 0 && direction.y < 0.5 && direction.y > -0.5)
-            {
-                anim.SetTrigger(hashAttl);
-            }
-            else if (direction.y > 0)
-            {
-                anim.SetTrigger(hashAttUp);
+                if (direction.x > 0 && direction.y < 0.5 && direction.y > -0.5)
+                {
+                    anim.SetTrigger(hashAttr);
+                }
+                else if (direction.x < 0 && direction.y < 0.5 && direction.y > -0.5)
+                {
+                    anim.SetTrigger(hashAttl);
+                }
+                else if (direction.y > 0)
+                {
+                    anim.SetTrigger(hashAttUp);
+                }
+                else
+                {
+                    anim.SetTrigger(hashAttDown);
+                }
             }
             else
             {
-                anim.SetTrigger(hashAttDown);
+                direction = (Target.transform.position - transform.position).normalized;
+                rb.velocity = direction * speed;
+                anim.SetFloat("Horizontal", direction.x);
+                anim.SetFloat("Vertical", direction.y);
             }
         }
-        else
-        {
-            direction = (Target.transform.position - transform.position).normalized;
-            rb.velocity = direction * speed;
-            anim.SetFloat("Horizontal", direction.x);
-            anim.SetFloat("Vertical", direction.y);
-        }
-
     }
 
 
@@ -142,7 +146,7 @@ public class FireSkullAI : MonoBehaviour
 
     private void die()
     {
-
+       
         InBucket();
         collider.enabled = true;
         transform.position = BP;
@@ -174,12 +178,15 @@ public class FireSkullAI : MonoBehaviour
     private int bullforce = 5;
     public void Shoot()
     {
-        
-        GameObject bull = Instantiate(bullPrefab, transform.position, Quaternion.identity);
-        bull.GetComponent<FireBall>().SetDamage(damage);
-        Rigidbody2D rbBull = bull.GetComponent<Rigidbody2D>();
-        Vector3 direction = (Target.transform.position - transform.position).normalized;
-        rbBull.velocity = direction * bullforce;
+        if(Target != null)
+        {
+            GameObject bull = Instantiate(bullPrefab, transform.position, Quaternion.identity);
+            bull.GetComponent<FireBall>().SetDamage(damage);
+            Rigidbody2D rbBull = bull.GetComponent<Rigidbody2D>();
+            Vector3 direction = (Target.transform.position - transform.position).normalized;
+            rbBull.velocity = direction * bullforce;
+        }
+   
     }
 
 }

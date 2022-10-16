@@ -16,8 +16,8 @@ TagManager:
   - Player
   - P_bullet
   - Enemy
-  - Ground
-  - 
+  - EnemyBullets
+  - grenade
   - 
   - 
   - 

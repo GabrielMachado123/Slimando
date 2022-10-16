@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wraith
   m_EditorClassIdentifier: 
   speed: 8
-  health: 30
-  damage: 15
+  health: 15
+  damage: 5

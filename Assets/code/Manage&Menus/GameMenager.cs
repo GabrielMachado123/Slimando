@@ -10,7 +10,10 @@ public class GameMenager : MonoBehaviour
 
     public static GameMenager instance;
 
-
+    private void Awake()
+    {
+        Time.timeScale = 0;
+    }
     public void StartGame()
     {
         if (isGameStarted == false)
