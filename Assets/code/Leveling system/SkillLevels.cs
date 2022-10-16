@@ -110,7 +110,7 @@ public class SkillLevels : MonoBehaviour
         splitandoNextLevel = splitandoLevel + 1;
         dmg.SetBulletDMG(shoot.bullDmg += 5);
         splitandoLevelText.text = "Level\n" + splitandoLevel.ToString() + " --> " + splitandoNextLevel.ToString();
-        shoot.firerate -= 0.15f;
+        shoot.firerate -= 0.025f;
         if (splitandoLevel == 8)
         {
             splitandoLevelText.text = "Level\n" + splitandoLevel.ToString();

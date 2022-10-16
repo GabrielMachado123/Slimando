@@ -4277,6 +4277,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1098108449, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_text
+      value: "Assets from: FROM ITCH.IO\n\nMusic from: https://audionautix.com/\n\nAudios
+        from: FREE SOUND. ORG\nFont from: This font is copyright (c) Jakob Fischer
+        at www.pizzadude.dk,  all rights reserved.\n\nTeam: Funity\nMembers: Gabriel
+        Machado, Jo\xE3o Ribeiro and S\xE9rgio Resendes\nhttps://gabrielmachado.myportfolio.com/\nhttps://hoomanbeans.itch.io/\nhttps://genexuz.itch.io/"
+      objectReference: {fileID: 0}
     - target: {fileID: 1343582062, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4646,6 +4653,10 @@ PrefabInstance:
     - target: {fileID: 1286284569026227439, guid: cb8f40c10039e0f46810a0d1a67be042, type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286284570480659580, guid: cb8f40c10039e0f46810a0d1a67be042, type: 3}
+      propertyPath: firerate
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1286284570480659581, guid: cb8f40c10039e0f46810a0d1a67be042, type: 3}
       propertyPath: unlock
