@@ -5,8 +5,8 @@ using TMPro;
 
 public class GameMenager : MonoBehaviour
 {
-    public GameObject pauseMenu, settingsMenu, startMenu;
-    private bool isPausedOpen, isSettingsOpen, isGameStarted;
+    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu;
+    private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen;
 
     public static GameMenager instance;
 
@@ -44,6 +44,16 @@ public class GameMenager : MonoBehaviour
             isSettingsOpen = true;
         }
     }
+
+    public void OpenCredits()
+    {
+        if (isCreditsOpen == false)
+        {
+            creditsMenu.SetActive(true);
+            isCreditsOpen = true;
+        }
+    }
+
     public void Resume()
     {
         if (isGameStarted == true)
@@ -58,6 +68,13 @@ public class GameMenager : MonoBehaviour
         {
             settingsMenu.SetActive(false);
             isSettingsOpen = false;
+            creditsMenu.SetActive(false);
+            isCreditsOpen = false;
         }
+    }
+
+    public void AudioToggle()
+    {
+        AudioListener.pause = !AudioListener.pause;
     }
 }
