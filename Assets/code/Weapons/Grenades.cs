@@ -11,13 +11,15 @@ public class Grenades : MonoBehaviour
 
     public float GDmg,GRadius, GCooldown, GTimer, GForce;
 
+    public float firerate = 3f, nextfire = 0f;
 
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))//left click
+        if (Input.GetKeyDown(KeyCode.Mouse1) && Time.time > nextfire )//left click
         {
+            nextfire = Time.time + firerate;
             AtiraGrenade();
         }
     }
