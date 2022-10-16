@@ -15,6 +15,9 @@ public class Grenades : MonoBehaviour
 
     private ShakeCameraControll shv;
 
+    public SkillLevels unlock;
+    public GameObject unlockInfoText;
+
     void Awake()
     {
         shv = Camera.main.GetComponent<ShakeCameraControll>();
@@ -34,10 +37,24 @@ public class Grenades : MonoBehaviour
 
     void AtiraGrenade()
     {
-        Vector3 normalizer = new Vector3(0f, 0f, -90f);
-        GameObject grena = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
-        grena.GetComponent<P_grenade>().SetGrenadeValues(GDmg, GTimer, GForce,shv);
-        Rigidbody2D rbBull = grena.GetComponent<Rigidbody2D>();
-        rbBull.AddForce((grena.transform.up * GForce), ForceMode2D.Impulse);
+        if (unlock.isGrenandoUnlocked == true)
+        {
+            Vector3 normalizer = new Vector3(0f, 0f, -90f);
+            GameObject grena = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
+            grena.GetComponent<P_grenade>().SetGrenadeValues(GDmg, GTimer, GForce, shv);
+            Rigidbody2D rbBull = grena.GetComponent<Rigidbody2D>();
+            rbBull.AddForce((grena.transform.up * GForce), ForceMode2D.Impulse);
+        }
+        else
+        {
+            unlockInfoText.SetActive(true);
+            StartCoroutine(ExecuteAfterTime(2));
+        }
     }
-}
+
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        unlockInfoText.SetActive(false);
+    }
+ }

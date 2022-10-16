@@ -13,6 +13,8 @@ public class ExpSystem : MonoBehaviour
     public bool isLevelUpPanelOpen;
 
     private ShakeCameraControll shake;
+    public PlayerHealth hp;
+    public HealthBar hpBar;
 
     public static ExpSystem instance;
 
@@ -54,7 +56,8 @@ public class ExpSystem : MonoBehaviour
         {
             currentExp -= goalExp;
             playerLevel++;
-
+            hp.currentHealth = hp.maxHealth;
+            hpBar.SetHealth(hp.maxHealth);
             goalExp += goalExp / 20;
             ShowLevelUpPanel();
             currentPlayerLevelText.text = "Level: " + playerLevel.ToString();

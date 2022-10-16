@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     {
         tr = GetComponent<TrailRenderer>();
     }
+    public SkillLevels unlock;
+    public GameObject unlockInfoText;
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -38,7 +41,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Dashing();
+            if (unlock.isDashUnlocked == true)
+            {
+                Dashing();
+            }
+            else
+            {
+                unlockInfoText.SetActive(true);
+                StartCoroutine(ExecuteAfterTime(2));
+            }
         }
         Cooldownholder -= Time.deltaTime;
 
@@ -85,4 +96,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", movement.SqrMagnitude());
     }
 
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        unlockInfoText.SetActive(false);
+    }
 }
