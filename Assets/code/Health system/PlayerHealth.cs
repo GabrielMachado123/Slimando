@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Animator anim = GetComponentInChildren<Animator>();
         anim.SetBool("isDead", true);
-
+        Debug.Log("death");
         //audio
         source.PlayOneShot(clip);
 

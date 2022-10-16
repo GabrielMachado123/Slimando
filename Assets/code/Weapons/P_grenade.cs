@@ -69,7 +69,7 @@ public class P_grenade : MonoBehaviour
         
         foreach (Collider2D col in colliders)
         {
-          
+            Debug.Log(col.gameObject.name);
             CheckEntity(col);
         }
         Destroy(this.gameObject);

@@ -12,6 +12,8 @@ public class ExpSystem : MonoBehaviour
     public GameObject levelUpPanel;
     public bool isLevelUpPanelOpen;
 
+    private ShakeCameraControll shake;
+
     public static ExpSystem instance;
 
     public int GetExp()
@@ -21,6 +23,8 @@ public class ExpSystem : MonoBehaviour
 
     private void Awake()
     {
+        shake = Camera.main.gameObject.GetComponent<ShakeCameraControll>();
+
         if (instance == null)
             instance = this;
         else
@@ -64,6 +68,9 @@ public class ExpSystem : MonoBehaviour
 
     public void ShowLevelUpPanel()
     {
+        //dissable screen shake
+        shake.enabled = false;
+
         Time.timeScale = 0;
         isLevelUpPanelOpen = true;
 
@@ -73,6 +80,9 @@ public class ExpSystem : MonoBehaviour
 
     public void CloseLevelUpPanel()
     {
+        //enable screen shake
+        shake.enabled = true;
+
         Time.timeScale = 1;
         isLevelUpPanelOpen = false;
 

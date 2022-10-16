@@ -77021,10 +77021,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 877878003}
-    - target: {fileID: 1286284569026227432, guid: 8afa4b84fa021d043b74be8c463cf4c7, type: 3}
-      propertyPath: dashforce
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1286284569026227434, guid: 8afa4b84fa021d043b74be8c463cf4c7, type: 3}
       propertyPath: m_RootOrder
       value: 4
