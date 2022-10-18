@@ -125,7 +125,7 @@ public class SkillLevels : MonoBehaviour
             grenandoLevel++;
             grenandoNextLevel = grenandoLevel + 1;
             grenade.firerate -= 0.15f;
-            grenade.GDmg += 40;
+            grenade.GDmg += 10;
             grenandoLevelText.text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
 
             if (grenandoLevel == 8)

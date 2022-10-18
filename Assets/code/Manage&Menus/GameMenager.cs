@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
-    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu, toturialBox;
+    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu, toturialBox, upgradeCD;
     private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen;
 
     public static GameMenager instance;
@@ -24,7 +24,7 @@ public class GameMenager : MonoBehaviour
     public void StartGame()
     {
         if (isGameStarted == false)
-        {
+        { 
             isGameStarted = true;
             Time.timeScale = 1;
             toturialBox.SetActive(false);
@@ -73,11 +73,17 @@ public class GameMenager : MonoBehaviour
     {
         if (isGameStarted == true)
         {
-            Time.timeScale = 1;
             settingsMenu.SetActive(false);
             pauseMenu.SetActive(false);
             isPausedOpen = false;
             isSettingsOpen = false;
+
+            if (ExpSystem.instance.isLevelUpPanelOpen == true)
+            {
+                Time.timeScale = 0;
+            } else {
+                Time.timeScale = 1;
+            }
         }
         else
         {
@@ -88,8 +94,18 @@ public class GameMenager : MonoBehaviour
         }
     }
 
+    public void CloseUpgradeCD()
+    {
+        upgradeCD.SetActive(false);
+    }
+
     public void AudioToggle()
     {
         AudioListener.pause = !AudioListener.pause;
+    }
+
+    public void ScreenShakeToggle()
+    {
+        GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled = !GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled;
     }
 }
