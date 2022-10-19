@@ -72,13 +72,13 @@ public class ZombieAI : MonoBehaviour
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieR);
-                    ExpSystem.instance.GainExp(20);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);//20
                 }
                 else if (isdying == false)
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieL);
-                    ExpSystem.instance.GainExp(20);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);//20
                 }
 
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;

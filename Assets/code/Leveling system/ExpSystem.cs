@@ -83,4 +83,15 @@ public class ExpSystem : MonoBehaviour
             levelUpPanel.SetActive(false);
         }
     }
+
+    public int GetCurrentXP()
+    {
+        return currentExp;
+    }
+
+    public int GetGoalXP()
+    {
+        return goalExp;
+    }
+
 }

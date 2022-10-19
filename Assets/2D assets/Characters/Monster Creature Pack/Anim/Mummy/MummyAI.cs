@@ -74,13 +74,13 @@ public class MummyAI : MonoBehaviour
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieR);
-                    ExpSystem.instance.GainExp(200);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);//200
                 }
                 else if (isdying == false)
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieL);
-                    ExpSystem.instance.GainExp(200);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);
                 }
 
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;

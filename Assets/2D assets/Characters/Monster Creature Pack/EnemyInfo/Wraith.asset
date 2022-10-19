@@ -15,3 +15,4 @@ MonoBehaviour:
   speed: 9
   health: 20
   damage: 5
+  XP: 35

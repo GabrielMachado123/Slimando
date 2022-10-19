@@ -73,11 +73,11 @@ public class FireSkullAI : MonoBehaviour
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieR);
-                    ExpSystem.instance.GainExp(50);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);//50
                 }
                 else if (isdying == false)
                 {
-                    ExpSystem.instance.GainExp(50);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);//50
                     isdying = true;
                     anim.SetTrigger(hashDieL);
                 }
