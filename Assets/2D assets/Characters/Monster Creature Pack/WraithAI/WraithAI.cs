@@ -74,7 +74,7 @@ public class WraithAI : MonoBehaviour
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieR);
-                    ExpSystem.instance.GainExp(25);
+                    ExpSystem.instance.GainExp(35);
                 }
 
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -184,6 +184,10 @@ public class WraithAI : MonoBehaviour
 
     public void DealDamage()
     {
-        playerHealth.P_TakeDamage(damage);
+        if(isattacking)
+        {
+            playerHealth.P_TakeDamage(damage);
+        }
+        
     }
 }

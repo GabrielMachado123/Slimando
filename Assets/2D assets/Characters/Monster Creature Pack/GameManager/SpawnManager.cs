@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     private float zombieSpawnRate = 5;
-    private int zombieSpawnAmount = 5;
+    private int zombieSpawnAmount = 2;
 
     private float GameTimer = 0f;
     private int timeOffset = 15;
@@ -18,21 +18,25 @@ public class SpawnManager : MonoBehaviour
 
     public Transform[] spawnAreas;
 
-    private float wraithSpawnRate = 30;
-    private int wraithSpawnAmount = 5;
+    private float wraithSpawnRate = 20;
+    private int wraithSpawnAmount = 10;
 
     private float timer2 = 0;
 
-    private float FireSkullSpawnRate = 50;
+    private float FireSkullSpawnRate = 20;
     private int FireSkullSpawnAmount = 5;
 
     private float timer3 = 0;
 
-    private float MummySpawnRate = 100;
+    private float MummySpawnRate = 20;
     private int MummySpawnAmount = 1;
 
     private float timer4 = 0;
 
+    private float buffTime = 15;
+
+
+    private bool wraithWave = false;
     public Vector3 RandomSpawnLocation()
     {
         return spawnAreas[Random.Range(0, spawnAreas.Length - 1)].transform.position;  
@@ -46,26 +50,48 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        if(GameTimer < timeOffset)
-        {
-            GameTimer += Time.deltaTime;
-            timer += Time.deltaTime;
-            timer2 += Time.deltaTime;
-            timer3 += Time.deltaTime;
-            timer4 += Time.deltaTime;
+        GameTimer += Time.deltaTime;
+        timer += Time.deltaTime;
 
-            if(timer > zombieSpawnRate)
+
+        if (timer > zombieSpawnRate)
+        {
+            for (int i = 0; i < zombieSpawnAmount; i++)
             {
-                for(int i = 0; i < zombieSpawnAmount; i++)
+                if (bucket.ZombiesToSpaw.Count != 0)
                 {
-                    if(bucket.ZombiesToSpaw.Count != 0)
+                    bucket.SpawnZombie(RandomSpawnLocation());
+                }
+            }
+            timer = 0;
+
+          if(GameTimer > buffTime)
+            {
+                if (zombieSpawnRate > 1)
+                {
+                    zombieSpawnRate -= 1f;
+                }
+
+                zombieSpawnAmount += 5;
+            } 
+        }
+
+
+        if(GameTimer > 45)
+        {
+            if(!wraithWave)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    if (bucket.WraithToSpawn.Count != 0)
                     {
-                        bucket.SpawnZombie(RandomSpawnLocation());
+                        bucket.SpawnWraith(RandomSpawnLocation());
                     }
                 }
-                timer = 0;
-            }
 
+                wraithWave = true;
+            }
+            timer2 += Time.deltaTime;
 
             if (timer2 > wraithSpawnRate)
             {
@@ -77,98 +103,75 @@ public class SpawnManager : MonoBehaviour
                     }
                 }
                 timer2 = 0;
-            }
 
-            if (timer3 > FireSkullSpawnRate)
-            {
-                for (int i = 0; i < FireSkullSpawnAmount; i++)
+                if (GameTimer > buffTime)
                 {
-                    if (bucket.FireSkullToSpawn.Count != 0)
+                    if (wraithSpawnRate > 1)
                     {
-                        bucket.SpawnFireSkull(RandomSpawnLocation());
+                        wraithSpawnRate -= 1f;
+                    }
+                    wraithSpawnAmount += 5;
+                }
+            }
+            if (GameTimer > 120)
+            {
+                timer3 += Time.deltaTime;
+
+                if (timer3 > FireSkullSpawnRate)
+                {
+                    for (int i = 0; i < FireSkullSpawnAmount; i++)
+                    {
+                        if (bucket.FireSkullToSpawn.Count != 0)
+                        {
+                            bucket.SpawnFireSkull(RandomSpawnLocation());
+                        }
+                    }
+                    timer3 = 0;
+
+                    if (GameTimer > buffTime)
+                    {
+                        if (FireSkullSpawnRate > 1)
+                        {
+                            FireSkullSpawnRate -= 1f;
+                        }
+                        FireSkullSpawnAmount += 5;
                     }
                 }
-                timer3 = 0;
-            }
 
-            if (timer4 > MummySpawnRate)
-            {
-                for (int i = 0; i < MummySpawnAmount; i++)
+                if(GameTimer > 250)
                 {
-                    if (bucket.MummyToSpawn.Count != 0)
+                    timer4 += Time.deltaTime;
+
+                    if (timer4 > MummySpawnRate)
                     {
-                        bucket.SpawnMummy(RandomSpawnLocation());
+                        for (int i = 0; i < MummySpawnAmount; i++)
+                        {
+                            if (bucket.MummyToSpawn.Count != 0)
+                            {
+                                bucket.SpawnMummy(RandomSpawnLocation());
+                            }
+                        }
+                        timer4 = 0;
+
+                        if (GameTimer > buffTime)
+                        {
+                            if (MummySpawnRate > 1)
+                            {
+                                MummySpawnRate -= 1f;
+                            }
+                            MummySpawnAmount += 2;
+                        }
                     }
                 }
-                timer4 = 0;
             }
 
         }
-        else
+
+
+        if (GameTimer > buffTime)
         {
-            timeOffset += timeOffset;
-            //zombie
-            if(zombieSpawnAmount < Max)
-            {
-                zombieSpawnAmount += 3;
-            }
-            else
-            {
-                zombieSpawnAmount = Max;
-            }
-
-            if(zombieSpawnRate > 1f)
-            {
-                zombieSpawnRate -= 0.1f;
-            }
-
-            //wraith
-            if (wraithSpawnAmount < Max)
-            {
-                wraithSpawnAmount += 2;
-            }
-            else
-            {
-                wraithSpawnAmount = Max;
-            }
-
-            if (wraithSpawnRate > 1f)
-            {
-                wraithSpawnRate -= 5f;
-            }
-
-            //skull
-
-            if (FireSkullSpawnAmount < Max)
-            {
-                FireSkullSpawnAmount += 4;
-            }
-            else
-            {
-                FireSkullSpawnAmount = Max;
-            }
-
-            if (FireSkullSpawnRate > 1f)
-            {
-                FireSkullSpawnRate -= 3f;
-            }
-
-            //mummy
-            if (MummySpawnAmount < Max)
-            {
-                MummySpawnAmount += 2;
-            }
-            else
-            {
-                MummySpawnAmount = Max;
-            }
-
-            if (MummySpawnRate > 1f)
-            {
-                MummySpawnRate -= 10f;
-            }
+            buffTime += buffTime;
+        }
 
         }
-       
-    }
 }

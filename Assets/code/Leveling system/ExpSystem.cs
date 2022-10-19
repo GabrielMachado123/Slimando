@@ -50,7 +50,7 @@ public class ExpSystem : MonoBehaviour
             playerLevel++;
             hp.currentHealth = hp.maxHealth;
             hpBar.SetHealth(hp.maxHealth);
-            goalExp += goalExp / 20;
+            goalExp += (goalExp /2) ;
             ShowLevelUpPanel();
             currentPlayerLevelText.text = "Level: " + playerLevel.ToString();
 
