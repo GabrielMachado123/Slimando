@@ -8,6 +8,8 @@ public class GameMenager : MonoBehaviour
 {
     public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu, toturialBox, upgradeCD;
     private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen;
+    public VolumeSlider slider;
+    public TextMeshProUGUI screenShakeState;
 
     public static GameMenager instance;
 
@@ -102,10 +104,29 @@ public class GameMenager : MonoBehaviour
     public void AudioToggle()
     {
         AudioListener.pause = !AudioListener.pause;
+
+        if (AudioListener.pause == true)
+        {
+            slider.volumeSlider.value = 0;
+        }
+        if (AudioListener.pause == false)
+        {
+            slider.volumeSlider.value = 1;
+        }
+        
     }
 
     public void ScreenShakeToggle()
     {
         GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled = !GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled;
+
+        if (GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled == true)
+        {
+            screenShakeState.text = "On";
+        }
+        if (GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled == false)
+        {
+            screenShakeState.text = "Off";
+        }
     }
 }
