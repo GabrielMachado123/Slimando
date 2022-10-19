@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 0.5
-  power: 0.5
+  power: 1
   rotationMultiplier: 0
 --- !u!114 &172198503
 MonoBehaviour:
@@ -494,7 +494,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &178000007
 GameObject:
@@ -1616,7 +1616,7 @@ GameObject:
   - component: {fileID: 790568657}
   - component: {fileID: 790568656}
   m_Layer: 0
-  m_Name: Background Music
+  m_Name: sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1731,7 +1731,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800809239
 GameObject:
@@ -2577,7 +2577,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1186658606
 GameObject:
@@ -4100,7 +4100,7 @@ Transform:
   - {fileID: 606111881}
   - {fileID: 1186658607}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073500561
 GameObject:
@@ -4277,9 +4277,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3920391857598507891, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+    - target: {fileID: 1098108449, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_text
+      value: "Assets from: FROM ITCH.IO\n\nMusic from: https://audionautix.com/\n\nAudios
+        from: FREE SOUND. ORG\nFont from: This font is copyright (c) Jakob Fischer
+        at www.pizzadude.dk,  all rights reserved.\n\nTeam: Funity\nMembers: Gabriel
+        Machado, Jo\xE3o Ribeiro and S\xE9rgio Resendes\nhttps://gabrielmachado.myportfolio.com/\nhttps://hoomanbeans.itch.io/\nhttps://genexuz.itch.io/"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343582062, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857404882970, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857404882970, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857404882970, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3920391857689325330, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4288,6 +4307,14 @@ PrefabInstance:
     - target: {fileID: 3920391857689325330, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857905405764, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_margin.x
+      value: -65.042114
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391857905405764, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_margin.z
+      value: -55.750122
       objectReference: {fileID: 0}
     - target: {fileID: 3920391858014282441, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4300,6 +4327,10 @@ PrefabInstance:
     - target: {fileID: 3920391858014282441, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391858154794928, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3920391858626897706, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4316,6 +4347,10 @@ PrefabInstance:
     - target: {fileID: 3920391859232778335, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920391859232778335, guid: 517937637a4682544b838bb0a5210e41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3920391859232778336, guid: 517937637a4682544b838bb0a5210e41, type: 3}
       propertyPath: hp
@@ -4516,7 +4551,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 54421376895365813, guid: f525df573bea41f49ad1634e34a79f83, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 54421376895365813, guid: f525df573bea41f49ad1634e34a79f83, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4589,7 +4624,7 @@ PrefabInstance:
       objectReference: {fileID: 1736009028}
     - target: {fileID: 1286284569026227434, guid: cb8f40c10039e0f46810a0d1a67be042, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1286284569026227434, guid: cb8f40c10039e0f46810a0d1a67be042, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4633,7 +4668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286284569026227439, guid: cb8f40c10039e0f46810a0d1a67be042, type: 3}
       propertyPath: m_Name
-      value: Slime
+      value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 1286284570480659580, guid: cb8f40c10039e0f46810a0d1a67be042, type: 3}
       propertyPath: firerate

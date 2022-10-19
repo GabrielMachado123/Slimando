@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5e51fb489596249bccd4d6767aace8, type: 3}
   m_Name: Wraith
   m_EditorClassIdentifier: 
-  speed: 8
-  health: 15
+  speed: 9
+  health: 20
   damage: 5
+  XP: 35

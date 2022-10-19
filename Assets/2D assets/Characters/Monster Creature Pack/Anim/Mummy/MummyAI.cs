@@ -74,13 +74,13 @@ public class MummyAI : MonoBehaviour
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieR);
-                    ExpSystem.instance.GainExp(120);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);//200
                 }
                 else if (isdying == false)
                 {
                     isdying = true;
                     anim.SetTrigger(hashDieL);
-                    ExpSystem.instance.GainExp(120);
+                    ExpSystem.instance.GainExp(enemyInfo.XP);
                 }
 
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -192,7 +192,11 @@ public class MummyAI : MonoBehaviour
 
     public void DealDamage()
     {
-        playerHealth.P_TakeDamage(damage);
+
+        if (isattacking)
+        {
+            playerHealth.P_TakeDamage(damage);
+        }
     }
 
 }

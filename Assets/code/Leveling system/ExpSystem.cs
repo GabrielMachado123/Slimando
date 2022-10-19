@@ -50,7 +50,7 @@ public class ExpSystem : MonoBehaviour
             playerLevel++;
             hp.currentHealth = hp.maxHealth;
             hpBar.SetHealth(hp.maxHealth);
-            goalExp += goalExp / 20;
+            goalExp += (goalExp /2) ;
             ShowLevelUpPanel();
             currentPlayerLevelText.text = "Slime Level: " + playerLevel.ToString();
 
@@ -83,4 +83,15 @@ public class ExpSystem : MonoBehaviour
             levelUpPanel.SetActive(false);
         }
     }
+
+    public int GetCurrentXP()
+    {
+        return currentExp;
+    }
+
+    public int GetGoalXP()
+    {
+        return goalExp;
+    }
+
 }

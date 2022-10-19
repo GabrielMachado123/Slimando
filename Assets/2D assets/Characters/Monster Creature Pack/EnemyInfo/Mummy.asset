@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Mummy
   m_EditorClassIdentifier: 
   speed: 4
-  health: 250
-  damage: 25
+  health: 1000
+  damage: 50
+  XP: 200
