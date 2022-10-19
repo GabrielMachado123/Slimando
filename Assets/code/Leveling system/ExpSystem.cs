@@ -9,7 +9,7 @@ public class ExpSystem : MonoBehaviour
     public TextMeshProUGUI currentPlayerLevelText, expJointText;
     private int currentExp, goalExp, playerLevel;
     public Slider expSlider;
-    public GameObject levelUpPanel;
+    public GameObject levelUpPanel, upgradeCD;
     public bool isLevelUpPanelOpen;
 
     public PlayerHealth hp;
@@ -29,7 +29,7 @@ public class ExpSystem : MonoBehaviour
     {
         goalExp = 100;
         playerLevel = 1;
-        currentPlayerLevelText.text = "Level: " + playerLevel.ToString();
+        currentPlayerLevelText.text = "Slime Level: " + playerLevel.ToString();
         expJointText.text = currentExp.ToString() + " / " + goalExp.ToString();
 
         expSlider.value = currentExp;
@@ -52,7 +52,7 @@ public class ExpSystem : MonoBehaviour
             hpBar.SetHealth(hp.maxHealth);
             goalExp += (goalExp /2) ;
             ShowLevelUpPanel();
-            currentPlayerLevelText.text = "Level: " + playerLevel.ToString();
+            currentPlayerLevelText.text = "Slime Level: " + playerLevel.ToString();
 
             expSlider.maxValue = goalExp;
         }
@@ -67,7 +67,10 @@ public class ExpSystem : MonoBehaviour
         isLevelUpPanelOpen = true;
 
         if (isLevelUpPanelOpen == true)
+        {
             levelUpPanel.SetActive(true);
+            upgradeCD.SetActive(true);
+        }
     }
 
     public void CloseLevelUpPanel()
@@ -76,6 +79,8 @@ public class ExpSystem : MonoBehaviour
         isLevelUpPanelOpen = false;
 
         if (isLevelUpPanelOpen == false)
+        {
             levelUpPanel.SetActive(false);
+        }
     }
 }

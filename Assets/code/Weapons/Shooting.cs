@@ -30,7 +30,7 @@ public class Shooting : MonoBehaviour
 
         if (EventSystem.current.IsPointerOverGameObject() == false)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextfire)//left click
+            if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextfire)//left click
             {
                 if (ExpSystem.instance.isLevelUpPanelOpen == false)
                     shv.StartShake(0.1f, 0.4f, 0.3f);
