@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
-    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu, toturialBox, upgradeCD;
-    private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen;
+    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu, toturialBox, upgradeCD, hiscoresScrene;
+    private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen, isHiscoresOpen;
     public VolumeSlider slider;
     public TextMeshProUGUI screenShakeState;
 
@@ -71,6 +71,15 @@ public class GameMenager : MonoBehaviour
         }
     }
 
+    public void OpenHiscores()
+    {
+        if (isHiscoresOpen == false)
+        {
+            hiscoresScrene.SetActive(true);
+            isHiscoresOpen = true;
+        }
+    }
+
     public void Resume()
     {
         if (isGameStarted == true)
@@ -78,7 +87,6 @@ public class GameMenager : MonoBehaviour
             settingsMenu.SetActive(false);
             pauseMenu.SetActive(false);
             isPausedOpen = false;
-            isSettingsOpen = false;
 
             if (ExpSystem.instance.isLevelUpPanelOpen == true)
             {
@@ -93,6 +101,8 @@ public class GameMenager : MonoBehaviour
             isSettingsOpen = false;
             creditsMenu.SetActive(false);
             isCreditsOpen = false;
+            hiscoresScrene.SetActive(false);
+            isHiscoresOpen = false;
         }
     }
 
