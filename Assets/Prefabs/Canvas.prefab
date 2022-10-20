@@ -33,9 +33,9 @@ RectTransform:
   m_Father: {fileID: 1533265641}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -69.52}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 139.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8418673
@@ -512,9 +512,9 @@ RectTransform:
   m_Father: {fileID: 1533265641}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -69.52}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 139.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &154379703
@@ -4802,9 +4802,9 @@ RectTransform:
   m_Father: {fileID: 1533265641}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1600, y: -69.52}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 139.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1808063479
@@ -18319,7 +18319,7 @@ MonoBehaviour:
   creditsMenu: {fileID: 1343582062}
   toturialBox: {fileID: 414356603310637506}
   upgradeCD: {fileID: 6554832514518058072}
-  hiscoresScrene: {fileID: 0}
+  hiscoresScrene: {fileID: 439458288}
   slider: {fileID: 877878014}
   screenShakeState: {fileID: 1592661079}
 --- !u!114 &3920391859232778336

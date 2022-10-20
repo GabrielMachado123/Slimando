@@ -5,6 +5,6 @@ using TMPro;
 
 public class RowUI : MonoBehaviour
 {
-    public TextMeshProUGUI rank, level, time;
+    public TextMeshProUGUI rank, name, time;
 
 }

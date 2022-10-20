@@ -6,12 +6,12 @@ using System;
 [Serializable]
 public class Score
 {
-    public int level;
+    public string name;
     public float time;
 
-    public Score (int level, float time)
+    public Score (string name, float time)
     {
-        this.level = level;
+        this.name = name;
         this.time = time;
     }
 }
