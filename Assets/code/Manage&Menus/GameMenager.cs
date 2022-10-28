@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
-    public GameObject pauseMenu, settingsMenu, startMenu, creditsMenu, toturialBox, upgradeCD, hiscoresScrene;
+    public GameObject[] ui_Object = new GameObject[7];
+
+    // [0] - pauseMenu || [1] - settingsMenu || [2] - startMenu || [3] - creditsMenu
+    // [4] - toturialBox  || [5] - upgradeScreenCDtoClick || [6] - hiscoresScrene
+
     private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen, isHiscoresOpen;
     public VolumeSlider slider;
     public TextMeshProUGUI screenShakeState;
-
-    public static GameMenager instance;
 
     private void Awake()
     {
@@ -20,7 +22,7 @@ public class GameMenager : MonoBehaviour
 
     public void PlayPressed()
     {
-        startMenu.SetActive(false);
+        ui_Object[2].SetActive(false);
     }
 
     public void StartGame()
@@ -29,7 +31,7 @@ public class GameMenager : MonoBehaviour
         { 
             isGameStarted = true;
             Time.timeScale = 1;
-            toturialBox.SetActive(false);
+            ui_Object[4].SetActive(false);
         }
     }
 
@@ -48,7 +50,7 @@ public class GameMenager : MonoBehaviour
         if (isPausedOpen == false)
         {
             Time.timeScale = 0;
-            pauseMenu.SetActive(true);
+            ui_Object[0].SetActive(true);
             isPausedOpen = true;
         }
     }
@@ -57,7 +59,7 @@ public class GameMenager : MonoBehaviour
         if (isSettingsOpen == false)
         {
             Time.timeScale = 0;
-            settingsMenu.SetActive(true);
+            ui_Object[1].SetActive(true);
             isSettingsOpen = true;
         }
     }
@@ -66,7 +68,7 @@ public class GameMenager : MonoBehaviour
     {
         if (isCreditsOpen == false)
         {
-            creditsMenu.SetActive(true);
+            ui_Object[3].SetActive(true);
             isCreditsOpen = true;
         }
     }
@@ -75,7 +77,7 @@ public class GameMenager : MonoBehaviour
     {
         if (isHiscoresOpen == false)
         {
-            hiscoresScrene.SetActive(true);
+            ui_Object[6].SetActive(true);
             isHiscoresOpen = true;
         }
     }
@@ -84,9 +86,10 @@ public class GameMenager : MonoBehaviour
     {
         if (isGameStarted == true)
         {
-            settingsMenu.SetActive(false);
-            pauseMenu.SetActive(false);
+            ui_Object[1].SetActive(false);
+            ui_Object[0].SetActive(false);
             isPausedOpen = false;
+            isSettingsOpen = false;
 
             if (ExpSystem.instance.isLevelUpPanelOpen == true)
             {
@@ -97,18 +100,18 @@ public class GameMenager : MonoBehaviour
         }
         else
         {
-            settingsMenu.SetActive(false);
+            ui_Object[1].SetActive(false);
             isSettingsOpen = false;
-            creditsMenu.SetActive(false);
+            ui_Object[3].SetActive(false);
             isCreditsOpen = false;
-            hiscoresScrene.SetActive(false);
+            ui_Object[6].SetActive(false);
             isHiscoresOpen = false;
         }
     }
 
     public void CloseUpgradeCD()
     {
-        upgradeCD.SetActive(false);
+        ui_Object[5].SetActive(false);
     }
 
     public void AudioToggle()

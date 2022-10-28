@@ -7,11 +7,18 @@ public class SkillLevels : MonoBehaviour
 {
     private int damageLevel, healthLevel, splitandoLevel, grenandoLevel, dashandoLevel, multiplandoLevel;
     private int damageNextLevel, healthNextLevel, splitandoNextLevel, grenandoNextLevel, dashandoNextLevel, multiplandoNextLevel;
-    public TextMeshProUGUI damageLevelText, healthLevelText, splitandoLevelText, grenandoLevelText, dashandoLevelText, multiplandoLevelText;
+
+    public TextMeshProUGUI[] upgardeText = new TextMeshProUGUI[6];
+    // [0] - damageLevelText || [1] - healthLevelText || [2] - splitandoLevelText
+    // [3] - grenandoLevelText || [4] - dashandoLevelText  || [5] - multiplandoLevelText
+
     public bool isDashUnlocked, isGrenandoUnlocked, isMultiplandoUnlocked;
 
-    public GameObject unlockDashButton, unlockGrenandoButton, unlockMultiplando;
-    public GameObject upgradeButtonSplitando, upgradeButtonDash, upgradeButtonGrenando, upgradeButtonMultiplando;
+    public GameObject[] unlock = new GameObject[3];
+    // [0] - unlockDashButton || [1] - unlockGrenandoButton || [2] - unlockMultiplando
+
+    public GameObject[] upgrade = new GameObject[4];
+    // [0] - upgradeButtonSplitando || [1] - upgradeButtonDash || [2] - upgradeButtonGrenando || [3] - upgradeButtonMultiplando
 
     public HealthBar hpBar;
     public PlayerHealth hp;
@@ -39,12 +46,12 @@ public class SkillLevels : MonoBehaviour
         dashandoNextLevel = 1;
         multiplandoNextLevel = 1;
 
-        damageLevelText.text = "Level\n" + damageLevel.ToString() + " --> " + damageNextLevel.ToString();
-        healthLevelText.text = "Level\n" + healthLevel.ToString() + " --> " + healthNextLevel.ToString();
-        splitandoLevelText.text = "Level\n" + splitandoLevel.ToString() + " --> " + splitandoNextLevel.ToString();
-        grenandoLevelText.text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
-        dashandoLevelText.text = "Level\n" + dashandoLevel.ToString() + " --> " + dashandoNextLevel.ToString();
-        multiplandoLevelText.text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
+        upgardeText[0].text = "Level\n" + damageLevel.ToString() + " --> " + damageNextLevel.ToString();
+        upgardeText[1].text = "Level\n" + healthLevel.ToString() + " --> " + healthNextLevel.ToString();
+        upgardeText[2].text = "Level\n" + splitandoLevel.ToString() + " --> " + splitandoNextLevel.ToString();
+        upgardeText[3].text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
+        upgardeText[4].text = "Level\n" + dashandoLevel.ToString() + " --> " + dashandoNextLevel.ToString();
+        upgardeText[5].text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
     }
 
     public void UnlockDashando()
@@ -53,9 +60,9 @@ public class SkillLevels : MonoBehaviour
         {
             isDashUnlocked = true;
             dashandoLevel = 1;
-            unlockDashButton.SetActive(false);
+            unlock[0].SetActive(false);
             dashandoNextLevel = 2;
-            dashandoLevelText.text = "Level\n" + dashandoLevel.ToString() + " --> " + dashandoNextLevel.ToString();
+            upgardeText[4].text = "Level\n" + dashandoLevel.ToString() + " --> " + dashandoNextLevel.ToString();
         }
     }
 
@@ -65,9 +72,9 @@ public class SkillLevels : MonoBehaviour
         {
             isGrenandoUnlocked = true;
             grenandoLevel = 1;
-            unlockGrenandoButton.SetActive(false);
+            unlock[1].SetActive(false);
             grenandoNextLevel = 2;
-            grenandoLevelText.text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
+            upgardeText[3].text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
         }
     }
 
@@ -77,9 +84,9 @@ public class SkillLevels : MonoBehaviour
         { 
             isMultiplandoUnlocked = true;
             multiplandoLevel = 1;
-            unlockMultiplando.SetActive(false);
+            unlock[2].SetActive(false);
             multiplandoNextLevel = 2;
-            multiplandoLevelText.text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
+            upgardeText[5].text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
             shoot.numBull += 1;
             shoot.isMultishoot = true;
         }
@@ -91,7 +98,7 @@ public class SkillLevels : MonoBehaviour
         damageNextLevel = damageLevel + 1;
         dmg.SetBulletDMG(shoot.bullDmg += 2);
         grenade.GDmg += 2;
-        damageLevelText.text = "Level\n" + damageLevel.ToString() + " --> " + damageNextLevel.ToString();
+        upgardeText[0].text = "Level\n" + damageLevel.ToString() + " --> " + damageNextLevel.ToString();
     }
 
     public void LevelUpHealth()
@@ -101,7 +108,7 @@ public class SkillLevels : MonoBehaviour
         hp.P_IncreaseMaxHP(15f);
         hpBar.SetMaxHealth(hp.maxHealth += 15);
         hpBar.SetHealth(hp.maxHealth);
-        healthLevelText.text = "Level\n" + healthLevel.ToString() + " --> " + healthNextLevel.ToString();
+        upgardeText[1].text = "Level\n" + healthLevel.ToString() + " --> " + healthNextLevel.ToString();
     }
 
     public void LevelUpSplitando()
@@ -109,12 +116,12 @@ public class SkillLevels : MonoBehaviour
         splitandoLevel++;
         splitandoNextLevel = splitandoLevel + 1;
         dmg.SetBulletDMG(shoot.bullDmg += 5);
-        splitandoLevelText.text = "Level\n" + splitandoLevel.ToString() + " --> " + splitandoNextLevel.ToString();
+        upgardeText[2].text = "Level\n" + splitandoLevel.ToString() + " --> " + splitandoNextLevel.ToString();
         shoot.firerate -= 0.025f;
         if (splitandoLevel == 8)
         {
-            splitandoLevelText.text = "Level\n" + splitandoLevel.ToString();
-            upgradeButtonSplitando.SetActive(false);
+            upgardeText[2].text = "Level\n" + splitandoLevel.ToString();
+            upgrade[0].SetActive(false);
         }
     } 
 
@@ -126,12 +133,12 @@ public class SkillLevels : MonoBehaviour
             grenandoNextLevel = grenandoLevel + 1;
             grenade.firerate -= 0.15f;
             grenade.GDmg += 10;
-            grenandoLevelText.text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
+            upgardeText[3].text = "Level\n" + grenandoLevel.ToString() + " --> " + grenandoNextLevel.ToString();
 
             if (grenandoLevel == 8)
             {
-                grenandoLevelText.text = "Level\n" + grenandoLevel.ToString();
-                upgradeButtonGrenando.SetActive(false);
+                upgardeText[3].text = "Level\n" + grenandoLevel.ToString();
+                upgrade[2].SetActive(false);
             }
         }
 
@@ -144,12 +151,12 @@ public class SkillLevels : MonoBehaviour
             dashandoLevel++;
             dashandoNextLevel = dashandoLevel + 1;
             dash.cooldown -= 0.5f;
-            dashandoLevelText.text = "Level\n" + dashandoLevel.ToString() + " --> " + dashandoNextLevel.ToString();
+            upgardeText[4].text = "Level\n" + dashandoLevel.ToString() + " --> " + dashandoNextLevel.ToString();
 
             if (dashandoLevel == 5)
             {
-                dashandoLevelText.text = "Level\n" + dashandoLevel.ToString();
-                upgradeButtonDash.SetActive(false);
+                upgardeText[4].text = "Level\n" + dashandoLevel.ToString();
+                upgrade[1].SetActive(false);
             }
         }
 
@@ -162,12 +169,12 @@ public class SkillLevels : MonoBehaviour
             multiplandoLevel++;
             multiplandoNextLevel = multiplandoLevel + 1;
             shoot.numBull += 1;
-            multiplandoLevelText.text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
+            upgardeText[5].text = "Level\n" + multiplandoLevel.ToString() + " --> " + multiplandoNextLevel.ToString();
 
             if (multiplandoLevel == 3)
             {
-                multiplandoLevelText.text = "Level\n" + multiplandoLevel.ToString();
-                upgradeButtonMultiplando.SetActive(false);
+                upgardeText[5].text = "Level\n" + multiplandoLevel.ToString();
+                upgrade[3].SetActive(false);
             }
         }
     }
