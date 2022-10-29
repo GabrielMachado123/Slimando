@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
+        isDead = false;
     }
 
     void start()

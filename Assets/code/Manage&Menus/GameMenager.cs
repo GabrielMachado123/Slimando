@@ -12,7 +12,7 @@ public class GameMenager : MonoBehaviour
     // [4] - toturialBox  || [5] - upgradeScreenCDtoClick || [6] - hiscoresScrene
 
     private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen, isHiscoresOpen;
-    public bool canStart, cameraShakeState;
+    public bool canStart, cameraShakeState, startPressed;
 
     public VolumeSlider slider;
 
@@ -26,31 +26,34 @@ public class GameMenager : MonoBehaviour
         cameraShakeState = true;
     }
 
+    public void HideAlert()
+    {
+        loginAlert.SetActive(false);
+    }
+
     public void PlayPressed()
     {
-        ui_Object[2].SetActive(false);
+        if (canStart == true)
+        {
+            ui_Object[2].SetActive(false); 
+        }
+        else
+        {
+            loginAlert.SetActive(true);
+            startPressed = true;
+        }
     }
 
     public void StartGame()
     {
-        if (isGameStarted == false && canStart == true)
+        if (isGameStarted == false)
         { 
             isGameStarted = true;
             Time.timeScale = 1;
             ui_Object[4].SetActive(false);
         }
-        else
-        {
-            loginAlert.SetActive(true);
-            StartCoroutine(ExecuteAfterTime(2));
-        }
     }
 
-    IEnumerator ExecuteAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        loginAlert.SetActive(false);
-    }
 
     public void QuitGame()
     {
