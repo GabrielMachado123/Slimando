@@ -12,7 +12,8 @@ public class GameMenager : MonoBehaviour
     // [4] - toturialBox  || [5] - upgradeScreenCDtoClick || [6] - hiscoresScrene
 
     private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen, isHiscoresOpen;
-    public bool canStart;
+    public bool canStart, cameraShakeState;
+
     public VolumeSlider slider;
 
     public TextMeshProUGUI screenShakeState;
@@ -22,6 +23,7 @@ public class GameMenager : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 0;
+        cameraShakeState = true;
     }
 
     public void PlayPressed()
@@ -146,13 +148,12 @@ public class GameMenager : MonoBehaviour
 
     public void ScreenShakeToggle()
     {
-        GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled = !GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled;
-
-        if (GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled == true)
+        cameraShakeState = !cameraShakeState;
+        if (cameraShakeState  == true)
         {
             screenShakeState.text = "On";
         }
-        if (GameObject.Find("Main Camera").GetComponent<ShakeCameraControll>().enabled == false)
+        if (cameraShakeState == false)
         {
             screenShakeState.text = "Off";
         }

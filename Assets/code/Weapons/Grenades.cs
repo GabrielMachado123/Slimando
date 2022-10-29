@@ -16,6 +16,7 @@ public class Grenades : MonoBehaviour
 
     private ShakeCameraControll shv;
 
+
     public SkillLevels unlock;
     public GameObject unlockInfoText;
 
@@ -31,6 +32,7 @@ public class Grenades : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && Time.time > nextfire)//left click
         {
+
             nextfire = Time.time + firerate;
             AtiraGrenade();
         }

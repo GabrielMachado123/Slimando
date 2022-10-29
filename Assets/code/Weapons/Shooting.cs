@@ -38,6 +38,7 @@ public class Shooting : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextfire)//left click
             {
+                source.PlayOneShot(clip);
                 if (ExpSystem.instance.isLevelUpPanelOpen == false)
                     shv.StartShake(0.1f, 0.4f, 0.3f);
 
@@ -49,17 +50,12 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if(ExpSystem.instance.isLevelUpPanelOpen == true)
-        {
-            shv.enabled = false;
-        }
-        else
-        {
-            shv.enabled = true;
-        }
+            if (ExpSystem.instance.isLevelUpPanelOpen == true)
+                shv.enabled = false;
+            else
+                shv.enabled = true;
 
     }
-
     void FixedUpdate()
     {
         Vector2 lookdir = mousePos - new Vector2(firepoint.position.x, firepoint.position.y);
@@ -69,7 +65,6 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-        source.PlayOneShot(clip);
 
         Vector3 normalizer = new Vector3(0f, 0f, -90f);
         GameObject bullet = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
