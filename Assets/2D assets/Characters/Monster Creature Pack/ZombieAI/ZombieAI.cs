@@ -165,6 +165,7 @@ public class ZombieAI : MonoBehaviour
             isCollinding = true;
         }
         
+        /* old collisions version
         if(collision.gameObject.tag == "PlayerBullet")
         {
             
@@ -173,7 +174,21 @@ public class ZombieAI : MonoBehaviour
          
             health -= damage;
         }
+        */
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+
+            float damage;
+            damage = collision.gameObject.GetComponent<P_Bullet>().GetBulletDmg();
+
+            health -= damage;
+        }
+    }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {

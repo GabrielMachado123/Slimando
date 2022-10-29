@@ -19,6 +19,12 @@ public class Shooting : MonoBehaviour
     public float firerate = 1f, nextfire = 0f;
     private Vector2 mousePos;
 
+    //piercing variables
+    private bool CanPierce = false;
+
+    [SerializeField]
+    protected int NumPierces = 2;
+
     void Awake()
     {
         shv = Camera.main.GetComponent<ShakeCameraControll>();
@@ -43,6 +49,15 @@ public class Shooting : MonoBehaviour
             }
         }
 
+        if(ExpSystem.instance.isLevelUpPanelOpen == true)
+        {
+            shv.enabled = false;
+        }
+        else
+        {
+            shv.enabled = true;
+        }
+
     }
 
     void FixedUpdate()
@@ -57,12 +72,15 @@ public class Shooting : MonoBehaviour
         source.PlayOneShot(clip);
 
         Vector3 normalizer = new Vector3(0f, 0f, -90f);
-        GameObject bull = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
-        bull.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
-        Rigidbody2D rbBull = bull.GetComponent<Rigidbody2D>();
-        rbBull.AddForce((bull.transform.up * bullforce), ForceMode2D.Impulse);
+        GameObject bullet = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + normalizer));
+        //too much get components bad
+        P_Bullet BulletComponet = bullet.GetComponent<P_Bullet>();
+        BulletComponet.SetBulletDMG(bullDmg);
+        BulletComponet.SetBulletPierce(NumPierces);
+        Rigidbody2D rbBull = bullet.GetComponent<Rigidbody2D>();
+        rbBull.AddForce((bullet.transform.up * bullforce), ForceMode2D.Impulse);
 
-        Destroy(bull, 8f);
+        Destroy(bullet, 8f);
     }
 
     void Multishoot()
@@ -82,10 +100,13 @@ public class Shooting : MonoBehaviour
                 Vector3 spread_v = new Vector3(0, 0, uni_rot);
                 //associating an instatiating bullet to a varible for later use
                 GameObject bullet = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v + normalizer));
-                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
+
+                //too much get components bad
+                P_Bullet BulletComponet = bullet.GetComponent<P_Bullet>();
+                BulletComponet.SetBulletDMG(bullDmg);
+                BulletComponet.SetBulletPierce(NumPierces);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
-                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //adding a force or a velocity + direction for the bulets to have movement;
                 bull_rb.AddForce((bullet.transform.up * bullet_force), ForceMode2D.Impulse);
                 //increment rotation of bullet
@@ -104,10 +125,12 @@ public class Shooting : MonoBehaviour
                 Vector3 spread_v = new Vector3(0, 0, uni_rot);
                 //associating an instatiating bullet to a varible for later use
                 GameObject bullet = Instantiate(bullPrefab, firepoint.position, Quaternion.Euler(firepoint.rotation.eulerAngles + spread_v + normalizer));
-                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
+                //too much get components bad
+                P_Bullet BulletComponet = bullet.GetComponent<P_Bullet>();
+                BulletComponet.SetBulletDMG(bullDmg);
+                BulletComponet.SetBulletPierce(NumPierces);
                 //getting the ridged body of sayd bullet to detect colisions
                 Rigidbody2D bull_rb = bullet.GetComponent<Rigidbody2D>();
-                bullet.GetComponent<P_Bullet>().SetBulletDMG(bullDmg);
                 //adding a force or a velocity + direction for the bulets to have movement;
                 bull_rb.AddForce((bullet.transform.up * bullet_force), ForceMode2D.Impulse);
                 //changes the bullets spread to its original value

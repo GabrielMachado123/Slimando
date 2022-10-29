@@ -6,9 +6,16 @@ public class P_Bullet : MonoBehaviour
 {
     private float bulletDMG;
 
-    public void SetBulletDMG( float dmg)
+    private int MaxPierce,CountPierce = 0;
+
+    public void SetBulletDMG(float dmg)
     {
         bulletDMG = dmg;
+    }
+
+    public void SetBulletPierce(int pierce)
+    {
+        MaxPierce = pierce;
     }
 
     public float GetBulletDmg()
@@ -16,9 +23,25 @@ public class P_Bullet : MonoBehaviour
         return bulletDMG;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void LateUpdate()
     {
-        Destroy(this.gameObject);
+        if(CountPierce == MaxPierce)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "Walls")
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Debug.Log("hit");
+            CountPierce += 1;
+        }
     }
 
 }

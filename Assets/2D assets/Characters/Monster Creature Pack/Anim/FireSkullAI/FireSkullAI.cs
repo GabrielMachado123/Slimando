@@ -159,7 +159,20 @@ public class FireSkullAI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        /*
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+
+            float damage;
+            damage = collision.gameObject.GetComponent<P_Bullet>().GetBulletDmg();
+
+            health -= damage;
+        }
+        */
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.tag == "PlayerBullet")
         {
 
