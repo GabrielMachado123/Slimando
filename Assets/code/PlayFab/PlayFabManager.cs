@@ -8,8 +8,21 @@ using Newtonsoft.Json;
 
 public class PlayFabManager : MonoBehaviour
 {
+    [Header("Window")]
+    public GameObject nameInputWindow;
+    public GameObject nameShowWindow;
+    public Text nameText;
+
+    [Header("Display name window")]
+    public GameObject nameError;
+    public InputField nameInput;
+
+    [Header("Leaderboard")]
     public GameObject rowPrefab;
     public Transform rowsParent;
+
+
+    public GameMenager start;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +36,47 @@ public class PlayFabManager : MonoBehaviour
         var request = new LoginWithCustomIDRequest
         {
             CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams
+            {
+                GetPlayerProfile = true
+            }
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnError);
     }
-    void OnSuccess(LoginResult result)
+    void OnLoginSuccess(LoginResult result)
     { 
         Debug.Log("Sucessful login/accont create!");
+        string name = null;
+        if (result.InfoResultPayload.PlayerProfile != null)
+            name = result.InfoResultPayload.PlayerProfile.DisplayName;
+
+        if (name == null)
+            nameInputWindow.SetActive(true);
+        else
+        {
+            nameInputWindow.SetActive(false);
+            start.canStart = true;
+        }
         GetLeaderboard();
+        nameText.text = name;
+    }
+
+     public void SubmitNameButton()
+    {
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = nameInput.text,
+            
+        };
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+        start.canStart = true;
+    }
+
+    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Updated display name!");
+        nameShowWindow.SetActive(true);
     }
 
     void OnError(PlayFabError error)
@@ -83,7 +129,7 @@ public class PlayFabManager : MonoBehaviour
             GameObject createRow = Instantiate(rowPrefab, rowsParent);
             Text[] text = createRow.GetComponentsInChildren<Text>();
             text[0].text = (item.Position + 1).ToString();
-            text[1].text = item.PlayFabId;
+            text[1].text = item.DisplayName;
             text[2].text = item.StatValue.ToString();
 
             Debug.Log(item.Position + " " + item.PlayFabId + " " + item.StatValue);
