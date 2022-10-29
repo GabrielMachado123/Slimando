@@ -14,6 +14,7 @@ public class GameMenager : MonoBehaviour
     private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen, isHiscoresOpen;
     public bool canStart;
     public VolumeSlider slider;
+
     public TextMeshProUGUI screenShakeState;
 
     public GameObject loginAlert;

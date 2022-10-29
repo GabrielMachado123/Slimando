@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class ExpSystem : MonoBehaviour
 {
     public TextMeshProUGUI currentPlayerLevelText, expJointText;
-    private int currentExp, goalExp, playerLevel;
+    private int currentExp, goalExp;
+    public int playerLevel;
     public Slider expSlider;
     public GameObject levelUpPanel, upgradeCD;
     public bool isLevelUpPanelOpen;
