@@ -188,30 +188,30 @@ MonoBehaviour:
   animator: {fileID: 1286284570032154742}
   isdash: 0
   cooldown: 3
-  dashforce: 5
-  dashlength: 1
+  dashforce: 2
+  dashlength: 0.6
   dashtimer: 0
   Cooldownholder: 0
   AC:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.8075403
-      outSlope: 0.8075403
-      tangentMode: 0
+      time: -0.0766983
+      value: 0.16526031
+      inSlope: 0.017576093
+      outSlope: 0.017576093
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.1125
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.4009985
-      outSlope: 1.4009985
-      tangentMode: 0
+      time: 1.9248352
+      value: 0.20043945
+      inSlope: 0.017576093
+      outSlope: 0.017576093
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.09166664
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286284569026227439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40bdd72a712907b46bacf1939999163f, type: 3}
   m_Name: 
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286284569026227439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a535728260b1b24ca93c35baf89b490, type: 3}
   m_Name: 
