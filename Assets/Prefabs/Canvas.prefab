@@ -500,7 +500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &98861083
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20739,7 +20739,6 @@ MonoBehaviour:
   rowPrefab: {fileID: 2386431106322353869, guid: db84a02bdba51044f874bcc869fcbd95, type: 3}
   rowsParent: {fileID: 611454616}
   start: {fileID: 3920391859232778337}
-  hiScore: {fileID: 3920391859232778343}
 --- !u!1 &3920391859260788321
 GameObject:
   m_ObjectHideFlags: 0
