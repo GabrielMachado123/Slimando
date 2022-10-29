@@ -70,6 +70,7 @@ public class PlayFabManager : MonoBehaviour
             
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+        nameInputWindow.SetActive(false);
         start.canStart = true;
     }
 
