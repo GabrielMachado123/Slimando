@@ -15,7 +15,10 @@ public class PlayerHealth : MonoBehaviour
     public AudioSource source;
     public AudioClip clip;
 
+    public TextMeshProUGUI slimeLevel, timeSurvived;
+
     public Timer score;
+
 
     void Awake()
     {
@@ -60,6 +63,8 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log(score.currentTime);
             Destroy(this.gameObject, 1f);
             StartCoroutine(ExecuteAfterTime(0.95f));
+            slimeLevel.text = ExpSystem.instance.playerLevel.ToString();
+            timeSurvived.text = score.currentTime.ToString();
         }
     }
 
