@@ -54,18 +54,18 @@ public class PlayerHealth : MonoBehaviour
 
     void P_Death()
     {
+        StartCoroutine(ExecuteAfterTime(0.95f));
+        playfabManager.SendLeaderboard(score.currentTime);
+        slimeLevel.text = ExpSystem.instance.playerLevel.ToString();
+        timeSurvived.text = score.currentTime.ToString();
+
         if (isDead == false)
         {
-            isDead = true;
             source.PlayOneShot(clip);
             Animator anim = GetComponentInChildren<Animator>();
             anim.SetBool("isDead", true);
-            playfabManager.SendLeaderboard(score.currentTime);
-            Debug.Log(score.currentTime);
             Destroy(this.gameObject, 1f);
-            StartCoroutine(ExecuteAfterTime(0.95f));
-            slimeLevel.text = ExpSystem.instance.playerLevel.ToString();
-            timeSurvived.text = score.currentTime.ToString();
+            isDead = true;
         }
     }
 
