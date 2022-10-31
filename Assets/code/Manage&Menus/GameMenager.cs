@@ -11,19 +11,48 @@ public class GameMenager : MonoBehaviour
     // [0] - pauseMenu || [1] - settingsMenu || [2] - startMenu || [3] - creditsMenu
     // [4] - toturialBox  || [5] - upgradeScreenCDtoClick || [6] - hiscoresScrene
 
-    private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen, isHiscoresOpen;
+    private bool isPausedOpen, isSettingsOpen, isGameStarted, isCreditsOpen, isHiscoresOpen, isGameFinished;
     public bool canStart, cameraShakeState, startPressed;
 
     public VolumeSlider slider;
+    public TextMeshProUGUI screenShakeState, slimeLevel, timeSurvived;
 
-    public TextMeshProUGUI screenShakeState;
-
+    public PlayFabManager playfabManager;
     public GameObject loginAlert;
+    public GameObject sendConfirmation;
+    public PlayerHealth playerState;
+    public Timer score;
 
     private void Awake()
     {
         Time.timeScale = 0;
         cameraShakeState = true;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isGameStarted == true)
+            {
+                if (isPausedOpen == true || isSettingsOpen == true)
+                    Resume();
+                else
+                    PauseMenu();
+            }
+        }
+    }
+
+    public void SendScores()
+    {
+        sendConfirmation.SetActive(true);
+        playfabManager.SendLeaderboard(score.currentTime);
+    }
+
+    public void ShowStats()
+    {
+        slimeLevel.text = "Slime Level: " + ExpSystem.instance.playerLevel.ToString();
+        timeSurvived.text = "Time Survived: " + score.currentTime.ToString();
     }
 
     public void HideAlert()

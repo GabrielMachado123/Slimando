@@ -15,10 +15,6 @@ public class PlayerHealth : MonoBehaviour
     public AudioSource source;
     public AudioClip clip;
 
-    public TextMeshProUGUI slimeLevel, timeSurvived;
-
-    public Timer score;
-
 
     void Awake()
     {
@@ -28,13 +24,9 @@ public class PlayerHealth : MonoBehaviour
         isDead = false;
     }
 
-    void start()
+    void Update()
     {
-    }
-
-    void LateUpdate()
-    {
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             P_Death();
         }
@@ -54,16 +46,15 @@ public class PlayerHealth : MonoBehaviour
 
     void P_Death()
     {
-        if (isDead == false)
-        {
-            playfabManager.SendLeaderboard(score.currentTime);
-            slimeLevel.text = ExpSystem.instance.playerLevel.ToString();
-            timeSurvived.text = score.currentTime.ToString();
-            source.PlayOneShot(clip);
-            Animator anim = GetComponentInChildren<Animator>();
-            anim.SetBool("isDead", true);
-            Destroy(this.gameObject, 1f);
-            isDead = true;
+
+            if (isDead == false)
+            {
+                source.PlayOneShot(clip);
+                Animator anim = GetComponentInChildren<Animator>();
+                anim.SetBool("isDead", true);
+                Destroy(this.gameObject, 1f);
+                isDead = true;
+
         }
         StartCoroutine(ExecuteAfterTime(0.85f));
     }
@@ -72,5 +63,6 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         deathScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 }

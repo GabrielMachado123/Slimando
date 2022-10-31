@@ -237,9 +237,6 @@ MonoBehaviour:
   deathScreen: {fileID: 0}
   source: {fileID: 759075101}
   clip: {fileID: 8300000, guid: f65523cd8d7504e4095509b4edbcd331, type: 3}
-  slimeLevel: {fileID: 0}
-  timeSurvived: {fileID: 0}
-  score: {fileID: 0}
 --- !u!114 &1729070721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +256,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286284569026227439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a535728260b1b24ca93c35baf89b490, type: 3}
   m_Name: 

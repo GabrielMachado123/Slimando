@@ -33,7 +33,7 @@ public class P_grenade : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
@@ -44,6 +44,18 @@ public class P_grenade : MonoBehaviour
         }
 
     }
+
+    /*void OnCollisionEnter2D(Collision2D col)
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+
+        if (col.transform.tag == "PlayerBullet")
+        {
+            explode();
+        }
+
+    }*/
 
     public void SetGrenadeValues(float dmg, float timer, float radius,ShakeCameraControll shv)
     {
